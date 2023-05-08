@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+	margin: 0;
+	padding: 0.2rem 0.2rem 0.1rem 0.2rem;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+body {
+	overflow-x: hidden;
+}
+.row .col h1 {
+	margin-top: 0.5rem;
+}
+.row .col .grid-input form {
+	display: grid;
+	margin-top: 2rem;
+	grid-template-columns: auto auto;
+	column-gap: 10rem;
+	row-gap: 2rem;
+}
+.row .col .grid-input form label {
+	font-weight: 600;
+	margin-bottom: 0.7rem;
+}
+.row .col .grid-input form input {
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	border-radius: 10px;
+	background-color: #ebebeb;
+}
+.row .col .grid-input form textarea {
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	border-radius: 10px;
+	background-color: #ebebeb;
+}
+.row .col .grid-input form select {
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	border-radius: 10px;
+	background-color: #ebebeb;
+}
+.row .col .grid-input form p {
+	color: red;
+	margin-top: 0.5rem;
+	font-weight: 600;
+	font-size: 12px;
+}
+.row .col .grid-input form .grid-input-button {
+	display: flex;
+	justify-content: end;
+	margin-top: 2rem;
+}
+.row .col .grid-input form .grid-input-button .simpan {
+	background-color: #57cc99;
+	border: none;
+}
+.row .col .grid-input form .grid-input-button button {
+	margin-left: 2rem;
+	padding: 0.5rem 2rem 0.5rem 2rem;
+}
+
+/* other */
+.row .col .grid-input form .pilih_materi_text input {
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	border-radius: 10px;
+	width: 100%;
+	background-color: #ebebeb;
+}
+.row .col .grid-input form .tujuan_program_text input {
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	border-radius: 10px;
+	width: 100%;
+	background-color: #ebebeb;
+}
+.row .col .grid-input form .metode_pembelajaran_text input {
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	border-radius: 10px;
+	width: 100%;
+	background-color: #ebebeb;
+}
+.row .col .grid-input form .nama_instansi_text input {
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	border-radius: 10px;
+	width: 100%;
+	background-color: #ebebeb;
+}

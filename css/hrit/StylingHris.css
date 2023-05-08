@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+body {
+	overflow-x: hidden;
+}
+.row .col .sidebar {
+	width: 300px;
+	padding: 1rem 1rem 1rem 0;
+	height: 100vh;
+	background-color: #a2d2ff;
+}
+.row .col .sidebar .sidebar-header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 1rem;
+}
+.row .col .sidebar .sidebar-header h1 {
+	font-weight: bold;
+	color: rgb(40, 40, 40);
+}
+.row .col .sidebar .sidebar-content {
+	margin-top: 2rem;
+}
+.row .col .sidebar .sidebar-content ul li {
+	list-style: none;
+	margin-top: 1rem;
+}
+.row .col .sidebar .sidebar-content ul li a {
+	text-decoration: none;
+	color: black;
+	font-weight: 600;
+	display: flex;
+}
+.row .col .sidebar .sidebar-content ul li a p {
+	margin-left: 1rem;
+}
+.row .col .sidebar .sidebar-content ul li .sidebar-content-logout {
+	position: absolute;
+	bottom: 1rem;
+	width: 100%;
+}
+#notification .modal-dialog .modal-content .modal-body .notif-box {
+	background-color: #ccfac0;
+	padding: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-radius: 10px;
+}
+#notification .modal-dialog .modal-content .modal-body .notif-box h4 {
+	font-size: 1.2em;
+	color: #2a8b61;
+	font-weight: 600;
+}
+#notification .modal-dialog .modal-content .modal-body .notif-box img {
+	width: 22px;
+	height: 21px;
+	margin-right: 1rem;
+	margin-top: -0.5rem;
+}

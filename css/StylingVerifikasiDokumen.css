@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+	margin: 0;
+	padding: 0.2rem 0.2rem 0.1rem 0.2rem;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+body {
+	overflow-x: hidden;
+}
+.container .row .col .text-sertifikat {
+	text-align: center;
+	max-width: 60%;
+}
+.container .row .col .form-sertifikat form {
+	display: flex;
+	flex-direction: column;
+	margin-top: 1rem;
+}
+.container .row .col .form-sertifikat form label {
+	margin-bottom: 1rem;
+}
+.container .row .col .form-sertifikat form input {
+	border-radius: 7px;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	margin-bottom: 1.5rem;
+}
+.container .row .col .form-sertifikat form button {
+	background-color: #57cc99;
+	width: 100%;
+	border: none;
+	font-weight: 600;
+	padding: 0.5rem 0 0.5rem 0;
+}
+.container .row .col .form-sertifikat a .btn-manual {
+	width: 99.5%;
+	margin-top: 1rem;
+	background-color: #d0ab26;
+	color: white;
+	font-weight: 600;
+	padding: 0.5rem 0 0.5rem 0;
+}
+.container .row .col .form-sertifikat a .btn-back {
+	width: 99.5%;
+	margin-top: 1rem;
+	background-color: #db3333;
+	color: white;
+	font-weight: 600;
+	padding: 0.5rem 0 0.5rem 0;
+}

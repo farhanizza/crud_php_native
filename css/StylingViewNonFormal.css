@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+	margin: 0;
+	padding: 0.2rem 0.2rem 0.1rem 0.2rem;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+body {
+	overflow-x: hidden;
+}
+.row .col h1 {
+	margin-top: 0.5rem;
+}
+.row .col .grid-input {
+	display: grid;
+	margin-top: 2rem;
+	grid-template-columns: auto auto;
+	column-gap: 10rem;
+	row-gap: 2rem;
+}
+.row .col .grid-input label {
+	font-weight: 600;
+	margin-bottom: 0.7rem;
+}
+.row .col .grid-input input {
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	border-radius: 10px;
+	background-color: #ebebeb;
+}
+.row .col .grid-input textarea {
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	border-radius: 10px;
+	background-color: #ebebeb;
+}
+.row .col .grid-input select {
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	border-radius: 10px;
+	background-color: #ebebeb;
+}
+.row .col .grid-input p {
+	color: red;
+	margin-top: 0.5rem;
+	font-weight: 600;
+	font-size: 12px;
+}
+.row .col .grid-input .download-box {
+	width: 100%;
+	padding: 0 0 0 1rem;
+	display: flex;
+	border-radius: 10px;
+	background-color: #ebebeb;
+	border: 2px solid #787878;
+}
+.row .col .grid-input .verified-box {
+	display: flex;
+	justify-content: space-between;
+}
+.row .col .grid-input .verified-box .verified-box-button {
+	display: flex;
+	justify-content: end;
+}
+.row .col .grid-input .verified-box .verified-box-button a {
+	text-decoration: none;
+}
+.row .col .grid-input .verified-box a button {
+	padding: 0.2rem 1.5rem 0.2rem 1.5rem;
+	border-radius: 5px;
+	border: none;
+	background-color: #57cc99;
+	color: white;
+	font-weight: 600;
+	margin-top: 0.1rem;
+	margin-right: -0.5rem;
+	font-size: 15px;
+}
+.row .col .grid-input .verified-box .info-verifikasi {
+	font-size: 14px;
+	color: #2a8b61;
+}
+.row .col .grid-input .download-box a {
+	display: flex;
+	text-decoration: none;
+	align-items: center;
+}
+.row .col .grid-input .download-box a .button-download {
+	font-size: 14px;
+	border: none;
+	background-color: #a0a0a0;
+	color: white;
+	padding: 0.3rem 1rem 0.3rem 1rem;
+	border-radius: 5px;
+	text-decoration: none;
+	font-weight: 600;
+}
+.row .col .grid-input .download-box .download-text {
+	margin-left: 1rem;
+	font-size: 15px;
+	margin-top: 1rem;
+	text-decoration: none;
+	color: #2b2b2b;
+}
+.row .col .grid-input .grid-input-button {
+	display: flex;
+	justify-content: end;
+	margin-top: 2rem;
+}
+.row .col .grid-input .grid-input-button .simpan {
+	background-color: #57cc99;
+	border: none;
+}
+.row .col .grid-input .grid-input-button button {
+	margin-left: 2rem;
+	padding: 0.5rem 2rem 0.5rem 2rem;
+	font-weight: 600;
+}

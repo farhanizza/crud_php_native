@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+	margin: 0;
+	padding: 0.2rem 0.2rem 0.1rem 0.2rem;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+body {
+	overflow-x: hidden;
+}
+.row .col .sq-non-formal {
+	padding: 1rem 2rem 1rem 2rem;
+	background-color: #ededed;
+	border-radius: 10px;
+	margin-top: 3rem;
+	display: flex;
+}
+.row .col .sq-non-formal .sq-non-formal-header {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+}
+.row .col .sq-non-formal .sq-non-formal-header h4 {
+	margin-top: 0.5rem;
+}
+.row .col .sq-non-formal .sq-non-formal-header h5 {
+	color: #2a8b61;
+	font-weight: bold;
+	margin-top: 1rem;
+}
+.row .col .sq-non-formal .sq-non-formal-box {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: end;
+}
+.row .col .sq-non-formal .sq-non-formal-box a button {
+	background-color: #57cc99;
+	padding: 0.5rem 2rem 0.5rem 2rem;
+	border: none;
+	font-weight: 600;
+}
+.row .col .sq-non-formal-back a button {
+	padding: 0.5rem 2rem 0.5rem 2rem;
+	margin-top: 1rem;
+	margin-right: 2rem;
+}

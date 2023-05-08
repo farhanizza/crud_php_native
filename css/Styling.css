@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+	margin: 0;
+	padding: 0.2rem 0.2rem 0.1rem 0.2rem;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+body {
+	overflow-x: hidden;
+}
+.container-pd .row .col .add button {
+	padding: 0.5rem 2rem 0.5rem 2rem;
+	background-color: #2a9d8f;
+	border: none;
+	border-radius: 7px;
+	color: #edede9;
+	font-weight: 600;
+}
+.container-pd .row .col .navbar-toggle {
+	display: none;
+}
+.container-pd .row .col .excel .a_excel .button_excel {
+	padding: 0.5rem 2rem 0.5rem 2rem;
+	background-color: #2b2d42;
+	border: none;
+	border-radius: 7px;
+	color: #edede9;
+	font-weight: 600;
+	text-decoration: none;
+}
+.container-pd .row .col .excel .a_non-formal .button_non-formal {
+	padding: 0.5rem 2rem 0.5rem 2rem;
+	background-color: #1b2bd5;
+	border: none;
+	border-radius: 7px;
+	color: #edede9;
+	font-weight: 600;
+	text-decoration: none;
+}
+.container-pd .row .col .excel .a_logout .button_logout {
+	padding: 0.5rem 2rem 0.5rem 2rem;
+	background-color: #9e2a2b;
+	border: none;
+	border-radius: 7px;
+	color: #edede9;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.row .col .table table tbody tr td .button-view button {
+	padding: 0.3rem 1rem 0.3rem 1rem;
+	background-color: #57cc99;
+	border: none;
+	border-radius: 5px;
+	color: #edede9;
+	font-weight: 600;
+}
+.row .col .table table tbody tr td .button-edit button {
+	padding: 0.3rem 1rem 0.3rem 1rem;
+	background-color: #e09f3e;
+	border: none;
+	border-radius: 5px;
+	color: #edede9;
+	font-weight: 600;
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+.row .col .table table tbody tr td .button-delete button {
+	padding: 0.3rem 1rem 0.3rem 1rem;
+	background-color: #9e2a2b;
+	border: none;
+	border-radius: 5px;
+	color: #edede9;
+	font-weight: 600;
+}
+
+.row .col .table .table-striped tbody tr td {
+	font-size: 1em;
+}
+
+.modal
+	.modal-dialog
+	.modal-content
+	.modal-body
+	form
+	.row
+	.col
+	.form-insert
+	.input-field
+	label {
+	margin-bottom: 0.5rem;
+}
+.modal .modal-dialog .modal-content .modal-header .close {
+	padding: 0.3rem 1rem 0.3rem 1rem;
+	border: none;
+	border-radius: 10px;
+	color: #eaf4f4;
+	background-color: #9e2a2b;
+}
+.modal
+	.modal-dialog
+	.modal-content
+	.modal-body
+	form
+	.row
+	.col
+	.form-insert
+	.input-field
+	input {
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	border-radius: 5px;
+	border: none;
+	background-color: #eaf4f4;
+}
+.container-pd .row .col .filter_button {
+	margin-top: 0.5rem;
+}
+.container-pd .row .col .filter_button a button {
+	background-color: #ff7d00;
+	border: none;
+}
+.container-pd .row .col .search form .input-group input {
+	border: 2px solid #a4a4a4;
+}
+.container-pd .row .col .search .input-group .search-button {
+	padding: 0.5rem 1rem 0.5rem 1.5rem;
+	border: 2px solid #a4a4a4;
+	border-radius: 10px;
+}
+.container-pd
+	.modal
+	.modal-dialog
+	.modal-content
+	.modal-body
+	form
+	.row
+	.col
+	.form-insert
+	.input-field
+	.p-info {
+	color: red;
+	font-size: 12px;
+}
+/* Responsive in mobile */
+@media screen and (max-width: 767px) {
+	.container-pd {
+		max-width: 100%;
+		margin: 0;
+		padding: 1rem;
+	}
+	.container-pd .button-top {
+		padding: 0.5rem;
+	}
+	.container-pd .row .col .table {
+		border-radius: 10px;
+	}
+	.modal
+		.modal-dialog
+		.modal-content
+		.modal-body
+		form
+		.row
+		.col
+		.form-insert
+		.input-field
+		input {
+		margin-top: -1rem;
+	}
+	.modal
+		.modal-dialog
+		.modal-content
+		.modal-body
+		form
+		.row
+		.col
+		.form-insert
+		.input-field
+		.wni {
+		margin-top: -3rem;
+	}
+	.modal
+		.modal-dialog
+		.modal-content
+		.modal-body
+		form
+		.row
+		.col
+		.form-insert
+		.input-field
+		.input-gender {
+		margin-top: -0.3rem;
+	}
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+	.container-pd {
+		max-width: 100%;
+		margin: 0;
+		padding: 1rem;
+	}
+	.container-pd .button-top {
+		padding: 0.5rem;
+	}
+	.container-pd .row .col .table {
+		border-radius: 10px;
+	}
+	.modal
+		.modal-dialog
+		.modal-content
+		.modal-body
+		form
+		.row
+		.col
+		.form-insert
+		.input-field
+		input {
+		margin-top: 1rem;
+	}
+	.modal
+		.modal-dialog
+		.modal-content
+		.modal-body
+		form
+		.row
+		.col
+		.form-insert
+		.input-field
+		.wni {
+		margin-top: -3rem;
+	}
+	.modal
+		.modal-dialog
+		.modal-content
+		.modal-body
+		form
+		.row
+		.col
+		.form-insert
+		.input-field
+		.input-gender {
+		margin-top: -0.3rem;
+	}
+}
