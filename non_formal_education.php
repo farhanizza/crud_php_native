@@ -29,7 +29,7 @@ require_once 'koneksi.php';
                     <form action="insertNfe.php" method="post" enctype="multipart/form-data">
                         <div class="d-flex flex-column">
                             <label for="nama_lengkap">Nama lengkap</label>
-                            <input type="text" name="nama_lengkap" id="nama_lengkap">
+                            <input type="text" name="nama_lengkap" id="nama_lengkap" onkeydown="return /[A-Z ]/i.test(event.key)" required autocomplete="off">
                         </div>
 
                         <div class="d-flex flex-column">
@@ -46,7 +46,7 @@ require_once 'koneksi.php';
                             </select>
 
                             <div class="tujuan_program_text" id="tujuan_program_text" style="display: none;">
-                                <input type="text" name="tujuan_program_text" placeholder="Lainnya">
+                                <input type="text" name="tujuan_program_text" placeholder="Lainnya" onkeydown="return /[A-Z0-9 ]/i.test(event.key)" autocomplete="off">
                             </div>
                         </div>
 
@@ -77,14 +77,14 @@ require_once 'koneksi.php';
                             </select>
 
                             <div class="pilih_materi_text" id="pilih_materi_text" style="display: none;">
-                                <input type="text" name="konten_pelajari_text" placeholder="Lainnya">
+                                <input type="text" name="konten_pelajari_text" placeholder="Lainnya" onkeydown="return /[A-Z0-9 ]/i.test(event.key)" autocomplete="off">
                             </div>
 
                         </div>
 
                         <div class="d-flex flex-column">
                             <label for="judul_program">Judul program yang diikuti</label>
-                            <input type="text" name="judul_program" id="judul_program">
+                            <input type="text" name="judul_program" id="judul_program" onkeydown="return /[A-Z0-9 ]/i.test(event.key)" required autocomplete="off">
                         </div>
 
                         <div class="d-flex flex-column">
@@ -101,7 +101,7 @@ require_once 'koneksi.php';
                             </select>
 
                             <div class="metode_pembelajaran_text" id="metode_pembelajaran_text" style="display: none;">
-                                <input type="text" name="metode_pembelajaran_text" id="" placeholder="Lainnya">
+                                <input type="text" name="metode_pembelajaran_text" id="" placeholder="Lainnya" onkeydown="return /[A-Z0-9 ]/i.test(event.key)" autocomplete="off">
                             </div>
                         </div>
 
@@ -125,7 +125,7 @@ require_once 'koneksi.php';
                             </select>
 
                             <div class="nama_instansi_text" id="nama_instansi_text" style="display: none;">
-                                <input type="text" name="nama_instansi_text" id="" placeholder="Lainnya">
+                                <input type="text" name="nama_instansi_text" id="" placeholder="Lainnya" onkeydown="return /[A-Z0-9 ]/i.test(event.key)" autocomplete="off">
                             </div>
                         </div>
 
@@ -145,7 +145,7 @@ require_once 'koneksi.php';
 
                         <div class="d-flex flex-column">
                             <label for="deksripsi">Deksripsi singkat tentang program</label>
-                            <textarea rows="4" cols="50" name="deksripsi" maxlength="150"></textarea>
+                            <textarea rows="4" cols="50" name="deksripsi" maxlength="150" id="deksripsi" onkeydown="return /[A-Z0-9 ]/i.test(event.key)" required autocomplete="off"></textarea>
                             <p>*Maksimum 150 kata</p>
                         </div>
 

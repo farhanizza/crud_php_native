@@ -20,8 +20,9 @@ body {
 	padding: 0.5rem 5rem 0.5rem 5rem;
 	font-weight: 600;
 }
-.container .row .col .manual-button button {
+.container .row .col .manual-button a .btn-palsu {
 	font-weight: 600;
 	padding: 0.5rem 4.5rem 0.5rem 4.5rem;
 	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
 }

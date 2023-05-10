@@ -40,7 +40,7 @@ if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
             </div>
         </div>
         <?php
-        $sql = mysqli_query($koneksi, "SELECT id, nama_lengkap, status FROM hrm_user ORDER BY status ASC");
+        $sql = mysqli_query($koneksi, "SELECT id, nama_lengkap, status FROM hrm_user ORDER BY status DESC");
         while ($data = mysqli_fetch_array($sql)) {
         ?>
             <div class="row">
@@ -52,11 +52,13 @@ if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
                             </h4>
                             <?php
                             if (
-                                $data['status'] == "Belum di review" || $data['status'] == "Ditolak"
+                                $data['status'] == "Dokumen telah ditolak" || $data['status'] == "Sistem membuktikan dokumen palsu"
                             ) {
                                 $color_text = '#DB3333';
-                            } else {
+                            } else if ($data['status'] == "Dokumen telah diterima") {
                                 $color_text = '#2A8B61';
+                            } else if ($data['status'] == "Belum di review") {
+                                $color_text = '#FFCC00';
                             }
                             echo "<h5 style='color: $color_text;'>" . $data['status'] . "</h5>";
                             ?>
@@ -78,7 +80,7 @@ if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
             <div class="col">
                 <div class="d-flex justify-content-end sq-non-formal-back">
                     <a href="index.php">
-                        <button class="btn btn-danger">
+                        <button class="btn btn-light">
                             Back
                         </button>
                     </a>

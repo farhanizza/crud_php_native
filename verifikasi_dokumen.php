@@ -33,7 +33,7 @@ require_once 'koneksi.php';
                     <form action="verifikasi_nomer_sertifikat.php" method="post">
                         <input type="hidden" name="id_user" id="" value="<?php echo $id ?>">
                         <label for="nomor_sertifikat">Nomor sertifikat</label>
-                        <input type="text" name="nomor_sertifikat" id="">
+                        <input type="text" name="nomor_sertifikat" id="" autocomplete="off" required>
                         <button type="submit" class="btn btn-success">Cek otomatis</button>
                     </form>
                     <a href="verifikasi_dokumen_manual_img.php?id=<?php echo $id ?>">

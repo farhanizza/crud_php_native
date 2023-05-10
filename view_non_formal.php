@@ -21,7 +21,7 @@ function truncateString($string, $max_length)
 </head>
 
 <body>
-    <div class="container">
+    <div class="container mb-5">
         <div class="row">
             <div class="col">
                 <div class="d-flex justify-content-center mt-2">
@@ -90,9 +90,6 @@ function truncateString($string, $max_length)
                                 <a href="download_non_formal.php?id=<?php echo $data_view['id_user'] ?>">
                                     <button class="button-download">Download</button>
                                 </a>
-                                <!-- <form action="download_non_formal.php" method="post">
-                                    <input type="hidden" name="id_user" id="text" value="<?php echo $data_view['id_user'] ?>">
-                                </form> -->
                                 <?php
                                 $text_sertifikat = truncateString($data_view['sertifikat'], 35);
                                 ?>
@@ -103,9 +100,12 @@ function truncateString($string, $max_length)
                                 if ($data_view['status_sertifikat'] == "Belum melakukan review sertifikat") {
                                     $color_text = '#ffbe0b';
                                     $img_status_belum_review = '<img src="warning.png" alt="" style="width: 27px; height: 25px; margin: -0.3rem 0 0 0.5rem;">';
-                                } else {
+                                } else if ($data_view['status_sertifikat'] == "Sistem membuktikan dokumen asli") {
                                     $color_text = '#2A8B61';
                                     $img_status_belum_review = '<img src="verified.png" alt="" style="width: 27px; height: 25px; margin: -0.3rem 0 0 0.5rem;">';
+                                } else if ($data_view['status_sertifikat'] == "Sistem membuktikan dokumen palsu") {
+                                    $color_text = '#DB3333';
+                                    $img_status_belum_review = '<img src="rejected.png" alt="" style="width: 27px; height: 25px; margin: -0.3rem 0 0 0.5rem;">';
                                 }
                                 ?>
                                 <p class="info-verifikasi" style="color: <?php echo $color_text; ?>;"><?php echo $data_view['status_sertifikat'] ?> <?php echo $img_status_belum_review ?> </p>
@@ -145,10 +145,12 @@ function truncateString($string, $max_length)
                                 <a href="non_formal.php">
                                     <button class="btn btn-white-50">Back</button>
                                 </a>
-                                <a href="alasan_tolak_form.php?id=<?php echo $id ?>">
+                                <a href="update_status_user_rejected.php?id=<?php echo $id ?>">
                                     <button class="btn btn-danger" onclick="return confirmRejected()">Tolak</button>
                                 </a>
-                                <button type="submit" class="btn btn-primary simpan" onclick="return confirmAccepted()">Terima</button>
+                                <a href="update_status_user_acc.php?id=<?php echo $id ?>">
+                                    <button type="submit" class="btn btn-primary simpan" onclick="return confirmAccepted()">Terima</button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -163,19 +165,20 @@ function truncateString($string, $max_length)
         function confirmAccepted() {
             let confirmation = confirm("Apakah kamu yakin ingin menerima?");
             if (confirmation) {
-                alert('Berhasil diterima');
+                // alert('Berhasil diterima');
                 return true;
             }
-            alert('Belum diterima');
+            // alert('Belum diterima');
             return false;
         }
 
         function confirmRejected() {
             let confirmation = confirm("Apakah kamu yakin ingin menolak?");
             if (confirmation) {
-                alert('Berhasil ditolak');
+                // alert('Berhasil ditolak');
+                return true;
             }
-            alert('Belum ditolak');
+            // alert('Belum ditolak');
             return false;
         }
     </script>

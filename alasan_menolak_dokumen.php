@@ -1,3 +1,8 @@
+<?php
+require_once 'koneksi.php';
+session_start();
+$id = $_GET['id'];
+?>
 <!doctype html>
 <html lang="en">
 
@@ -19,13 +24,14 @@
                     </h1>
                 </div>
                 <div class="input-menolak-dokumen">
-                    <form action="" method="post">
+                    <form action="update_status_user.php" method="post">
                         <label for="pesan_menolak_dokumen">Pesan</label>
-                        <input type="text" name="pesan_menolak_dokumen" id="pesan_menolak_dokumen">
+                        <input type="hidden" name="id_user" id="" value="<?php echo $id ?>">
+                        <input type="text" name="pesan" maxlength="150" id="pesan_menolak_dokumen" onkeydown="return /[A-Z0-9 ]/i.test(event.key)" required autocomplete="off">
                         <p>*Maksimum 150 kata</p>
                         <button type="submit" class="btn btn-success">Kirim pesan</button>
                     </form>
-                    <a href="verifikasi_dokumen_manual_img.php">
+                    <a href="view_non_formal.php?id=<?php echo $id ?>">
                         <button class="btn btn-danger">Kembali</button>
                     </a>
                 </div>

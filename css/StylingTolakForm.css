@@ -17,9 +17,10 @@ body {
 	margin-bottom: 1rem;
 }
 .container .row .col .form-alasan form input {
-	width: 100%;
-	height: 25vh;
 	border-radius: 10px;
+	margin-bottom: 0.5rem;
+	padding: 1rem 7rem 7rem 1rem;
+	width: 100%;
 }
 .container .row .col .form-alasan form p {
 	color: #db3333;

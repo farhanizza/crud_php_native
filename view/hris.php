@@ -1,5 +1,10 @@
 <?php
 session_start();
+require_once '../koneksi.php';
+
+$id = $_SESSION['id_user'];
+
+
 if (!isset($_SESSION['username']) || $_SESSION['hr_name'] !== 'HRIT_group') {
     echo
     "<script>
@@ -7,6 +12,7 @@ if (!isset($_SESSION['username']) || $_SESSION['hr_name'] !== 'HRIT_group') {
     window.location.href = '../login.php';
     </script>";
 }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -68,16 +74,49 @@ if (!isset($_SESSION['username']) || $_SESSION['hr_name'] !== 'HRIT_group') {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Notification</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Notifikasi</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="notif-box">
-                        <h4>
-                            Sistem membuktikan dokumen asli
-                        </h4>
-                        <img src="../verified.png" alt="">
-                    </div>
+                    <?php
+                    $sql_code = mysqli_query($koneksi, "SELECT hrm_user.`status`, hr_pesan.alasan_form FROM hrm_user 
+                    left JOIN employee ON hrm_user.id_employee = employee.id
+                    left JOIN hr_pesan ON hr_pesan.id_user = hrm_user.id 
+                    WHERE hrm_user.id_employee = $id");
+                    while ($data_notif = mysqli_fetch_array($sql_code)) {
+                    ?>
+                        <?php
+                        if ($data_notif['status'] == "Dokumen telah ditolak" || $data_notif['status'] == "Sistem membuktikan dokumen palsu") {
+                            $bg_notif = '#EFBFBF';
+                            $h1_color = '#DB3333';
+                            // $p_color = '#5B5B5B';
+                            $p_color = '#fff';
+                            $img = 'rejected.png';
+                        } else if ($data_notif['status'] == "Belum di review") {
+                            $bg_notif = '#FFEB9D';
+                            $h1_color = '#5E4900';
+                            $p_color = '#5E4900';
+                            $p_info = 'none';
+                            $img = 'warning.png';
+                        } else {
+                            $bg_notif = '#ccfac0';
+                            $h1_color = '#2a8b61';
+                            $p_info = 'none';
+                            $img = 'verified.png';
+                        }
+                        ?>
+                        <div class="notif-box mb-3" style="background-color: <?php echo $bg_notif ?>;">
+                            <div class="d-flex">
+                                <h4 style="color: <?php echo $h1_color ?>;">
+                                    <?php echo $data_notif['status'] ?>
+                                </h4>
+                                <img src="../<?php echo $img ?>" alt="">
+                            </div>
+                            <h5 class="mt-3" style="color: <?php echo $p_color ?>; display: <?php echo $p_info ?>;">
+                                <?php echo $data_notif['alasan_form'] ?>
+                            </h5>
+                        </div>
+                    <?php } ?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

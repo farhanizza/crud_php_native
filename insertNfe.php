@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'koneksi.php';
 
 $nama_lengkap = $_POST['nama_lengkap'];
@@ -36,6 +37,8 @@ $provinsi = $_POST['provinsi'];
 $deksripsi = $_POST['deksripsi'];
 $kota = $_POST['kota'];
 $id_provinces = $_POST["id_provinces"];
+$id_employee = $_SESSION['id_user'];
+
 
 switch ($_GET["jenis"]) {
     case 'kota':
@@ -98,13 +101,18 @@ imagejpeg($file, $new_path, $quality);
 // pdf
 move_uploaded_file($file_temp, $new_path);
 
-$sql_code = "INSERT INTO hrm_user (nama_lengkap, tujuan_program, start_date, end_date, materi_konten, judul_program, 
+$sql_code = "INSERT INTO hrm_user (id_employee, nama_lengkap, tujuan_program, start_date, end_date, materi_konten, judul_program, 
 metode_pembelajaran, sertifikat, nama_instansi, lokasi_provinsi, deksripsi, lokasi_kota, status, status_sertifikat) 
-VALUES ('$nama_lengkap', '$tujuan_program', '$start_date', '$end_date', '$konten_pelajari', '$judul_program', 
+VALUES ($id_employee,'$nama_lengkap', '$tujuan_program', '$start_date', '$end_date', '$konten_pelajari', '$judul_program', 
 '$metode_pembelajaran', '$file_name', '$nama_instansi', '$provinsi', '$deksripsi', '$kota', 'Belum di review', 
 'Belum melakukan review sertifikat')";
 
+
+
 if (mysqli_query($koneksi, $sql_code)) {
+    $sql_code_nfe = mysqli_query($koneksi, "SELECT id, id_employee FROM hrm_user where id_employee = $id_employee");
+    $data = mysqli_fetch_array($sql_code_nfe);
+    $_SESSION['id_user_nfe'] = $data['id'];
     echo "<script>
             alert('Success: Berhasil ditambahkan');
             window.location.href = 'non_formal_education.php';

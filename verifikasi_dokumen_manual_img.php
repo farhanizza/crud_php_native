@@ -28,7 +28,7 @@ $id = $_GET['id'];
                         $sql_file = mysqli_query($koneksi, "SELECT sertifikat FROM hrm_user WHERE id = $id");
                         $data_file = mysqli_fetch_array($sql_file);
                         ?>
-                        <iframe src="file/<?php echo $data_file['sertifikat'] ?>" style="width: 1015px; height: 759px;"></iframe>
+                        <embed src="file/<?php echo $data_file['sertifikat'] ?>" style="width: 1015px; height: 759px;"></embed>
                     </div>
                 </div>
                 <div class="d-flex justify-content-around mt-3 manual-box">
@@ -47,11 +47,12 @@ $id = $_GET['id'];
                     </div>
                 </div>
                 <div class="d-flex justify-content-center flex-column align-items-center mb-5 manual-button">
-                    <?php $id = $_GET['id']; ?>
-                    <a href="">
+                    <a href="verifikasi_dokumen_asli.php?id=<?php echo $id ?>">
                         <button class="btn btn-success" onclick="">Dokumen Asli</button>
                     </a>
-                    <button class="btn btn-danger" onclick="return GoToDP()">Dokumen Palsu</button>
+                    <a href="alasan_menolak_dokumen.php?id=<?php echo $id ?>">
+                        <button class="btn btn-danger btn-palsu">Dokumen Palsu</button>
+                    </a>
                     <a href="verifikasi_dokumen.php?id=<?php echo $id ?>">
                         <button class="btn btn-light">Kembali</button>
                     </a>
@@ -60,11 +61,6 @@ $id = $_GET['id'];
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    <script>
-        function GoToDP() {
-            window.location.href = 'alasan_menolak_dokumen.php';
-        }
-    </script>
 </body>
 
 </html>

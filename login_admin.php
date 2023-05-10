@@ -42,7 +42,7 @@
                 <div class="register-form">
                     <form action="login_admin_data.php" method="post">
                         <label for="username">Username</label>
-                        <input type="text" name="username" id="username" required>
+                        <input type="text" name="username" id="username" autocomplete="off" required>
 
                         <label for="password">Password</label>
                         <input type="password" name="password" id="password" required>

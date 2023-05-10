@@ -18,6 +18,7 @@ body {
 .container .row .col .input-menolak-dokumen form label {
 	margin-bottom: 1rem;
 }
+/* Input text */
 .container .row .col .input-menolak-dokumen form input {
 	border-radius: 10px;
 	margin-bottom: 0.5rem;
