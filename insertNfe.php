@@ -110,7 +110,7 @@ VALUES ($id_employee,'$nama_lengkap', '$tujuan_program', '$start_date', '$end_da
 
 
 if (mysqli_query($koneksi, $sql_code)) {
-    $sql_code_nfe = mysqli_query($koneksi, "SELECT id, id_employee FROM hrm_user where id_status = '0'");
+    $sql_code_nfe = mysqli_query($koneksi, "SELECT id, id_employee FROM hrm_user where id_employee = $id_employee ORDER BY id DESC LIMIT 1");
     $data = mysqli_fetch_array($sql_code_nfe);
     // $_SESSION['id_user_nfe'] = $data['id'];
     $id_user = $data['id'];

@@ -23,5 +23,5 @@ if ($sql_code) {
     $date_time = date("Y-m-d H:i:s");
     $data_username_admin = $data_admin['username'];
     mysqli_query($koneksi, "INSERT INTO hr_approved (id_approved, id_user, tanggal_approved, approved_name, id_status) 
-    VALUES ('$id_employee', '$id_user', '$date_time', '$data_username_admin', '3')");
+    VALUES ('$id_employee', '$id_user', '$date_time', '$data_username_admin', '5')");
 }

@@ -40,9 +40,9 @@ if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
             </div>
         </div>
         <?php
-        $sql = mysqli_query($koneksi, "SELECT hrm_user.id, hrm_user.nama_lengkap, hr_status.status status FROM hrm_user 
+        $sql = mysqli_query($koneksi, "SELECT hrm_user.id, hrm_user.nama_lengkap, hr_status.status FROM hrm_user 
         left join hr_status ON hr_status.id_status = hrm_user.id_status
-        ORDER BY status DESC");
+        ORDER BY id ASC");
         while ($data = mysqli_fetch_array($sql)) {
         ?>
             <div class="row">

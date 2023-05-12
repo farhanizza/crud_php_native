@@ -1,5 +1,6 @@
 <?php
 require_once 'koneksi.php';
+session_start();
 ?>
 <!doctype html>
 <html lang="en">
@@ -156,7 +157,22 @@ require_once 'koneksi.php';
                             </select>
 
                             <div class="grid-input-button">
-                                <a href="#" onclick="window.location.href = 'view/hris.php'">
+                                <?php
+                                $id_employee = $_SESSION['id_user_employee'];
+                                $sql_get_hr_name = mysqli_query($koneksi, "SELECT hr_name FROM employee WHERE id = $id_employee");
+                                $data = mysqli_fetch_array($sql_get_hr_name);
+
+                                if ($data['hr_name'] == "HRIT_group") {
+                                    $back_to = "hrit_g.php";
+                                } else if ($data['hr_name'] == "LnD_group") {
+                                    $back_to = "lnd_g.php";
+                                } else if ($data['hr_name'] == "organization_group") {
+                                    $back_to = "od_g.php";
+                                } else if ($data['hr_name'] == "talent_group") {
+                                    $back_to = "ta_g.php";
+                                }
+                                ?>
+                                <a href="#" onclick="window.location.href = 'view/group/<?php echo $back_to ?>'">
                                     <button class="btn btn-danger">Back</button>
                                 </a>
                                 <button type="submit" class="btn btn-primary simpan">Simpan</button>

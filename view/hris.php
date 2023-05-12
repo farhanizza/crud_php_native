@@ -78,13 +78,16 @@ if (!isset($_SESSION['username']) || $_SESSION['hr_name'] !== 'HRIT_group') {
                 </div>
                 <div class="modal-body">
                     <?php
-                    $sql_code = mysqli_query($koneksi, "SELECT hr_status.status, hr_pesan.alasan_form, hr_insert_dokumen.tanggal_insert
+                    $sql_code = mysqli_query(
+                        $koneksi,
+                        "SELECT hr_status.status, hr_pesan.alasan_form, hr_insert_dokumen.tanggal_insert 
                     FROM hrm_user 
                     left JOIN employee ON hrm_user.id_employee = employee.id
                     left JOIN hr_pesan ON hr_pesan.id_user = hrm_user.id 
                     left JOIN hr_status ON hr_status.id_status = hrm_user.id_status
                     LEFT JOIN hr_insert_dokumen ON hr_insert_dokumen.id_user = hrm_user.id
-                    WHERE hrm_user.id_employee = $id");
+                    WHERE hrm_user.id_employee = $id ORDER BY hr_insert_dokumen.tanggal_insert ASC"
+                    );
                     while ($data_notif = mysqli_fetch_array($sql_code)) {
                     ?>
                         <?php

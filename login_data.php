@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 window.location.href = 'view/group/hrit_g.php';
                 </script>";
             } else if ($data['hr_name'] == 'LnD_group') {
-                $_SESSION['id_user'] = $data['id'];
+                $_SESSION['id_user_employee'] = $data['id'];
                 $_SESSION['username'] = $data['username'];
                 $_SESSION['hr_name'] = $data['hr_name'];
                 $_SESSION['last_login_time'] = time();
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 window.location.href = 'view/group/lnd_g.php';
                 </script>";
             } else if ($data['hr_name'] == 'organization_group') {
-                $_SESSION['id_user'] = $data['id'];
+                $_SESSION['id_user_employee'] = $data['id'];
                 $_SESSION['username'] = $data['username'];
                 $_SESSION['hr_name'] = $data['hr_name'];
                 $_SESSION['last_login_time'] = time();
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 window.location.href = 'view/group/od_g.php';
                 </script>";
             } else if ($data['hr_name'] == 'talent_group') {
-                $_SESSION['id_user'] = $data['id'];
+                $_SESSION['id_user_employee'] = $data['id'];
                 $_SESSION['username'] = $data['username'];
                 $_SESSION['hr_name'] = $data['hr_name'];
                 $_SESSION['last_login_time'] = time();
