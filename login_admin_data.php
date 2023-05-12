@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Jika cocok password nya
         if (password_verify($password, $data['password'])) {
 
-            $_SESSION['id_user'] = $data['id'];
+            $_SESSION['id_user_admin'] = $data['id'];
             $_SESSION['username_admin'] = $data['username'];
             $_SESSION['level'] = '0';
             $_SESSION['last_login_time'] = time();

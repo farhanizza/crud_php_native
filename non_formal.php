@@ -40,7 +40,9 @@ if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
             </div>
         </div>
         <?php
-        $sql = mysqli_query($koneksi, "SELECT id, nama_lengkap, status FROM hrm_user ORDER BY status DESC");
+        $sql = mysqli_query($koneksi, "SELECT hrm_user.id, hrm_user.nama_lengkap, hr_status.status status FROM hrm_user 
+        left join hr_status ON hr_status.id_status = hrm_user.id_status
+        ORDER BY status DESC");
         while ($data = mysqli_fetch_array($sql)) {
         ?>
             <div class="row">
@@ -51,13 +53,15 @@ if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
                                 <?php echo $data['nama_lengkap'] ?>
                             </h4>
                             <?php
-                            if (
-                                $data['status'] == "Dokumen telah ditolak" || $data['status'] == "Sistem membuktikan dokumen palsu"
-                            ) {
+                            if ($data['status'] == "Rejected Form") {
                                 $color_text = '#DB3333';
-                            } else if ($data['status'] == "Dokumen telah diterima") {
+                            } else if ($data['status'] == "Approved Form") {
                                 $color_text = '#2A8B61';
-                            } else if ($data['status'] == "Belum di review") {
+                            } else if ($data['status'] == "Half Approved Form") {
+                                $color_text = '#2a8b61';
+                            } else if ($data['status'] == "Document Approved") {
+                                $color_text = '#2a8b61';
+                            } else if ($data['status'] == "Pending Form") {
                                 $color_text = '#FFCC00';
                             }
                             echo "<h5 style='color: $color_text;'>" . $data['status'] . "</h5>";
@@ -66,7 +70,7 @@ if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
                         <div class="sq-non-formal-box">
                             <div class="sq-non-formal-button">
                                 <a href="view_non_formal.php?id=<?php echo $data['id'] ?>">
-                                    <button class="btn btn-primary">
+                                    <button class="btn btn-primary" id="btn_view_non_formal">
                                         View
                                     </button>
                                 </a>
@@ -90,6 +94,8 @@ if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </body>
 
 </html>

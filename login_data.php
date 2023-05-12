@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (password_verify($password, $data['password'])) {
 
             if ($data['hr_name'] == "HRIT_group") {
-                $_SESSION['id_user'] = $data['id'];
+                $_SESSION['id_user_employee'] = $data['id'];
                 $_SESSION['username'] = $data['username'];
                 $_SESSION['hr_name'] = $data['hr_name'];
                 $_SESSION['last_login_time'] = time();

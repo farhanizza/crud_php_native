@@ -1,6 +1,20 @@
 <?php
 require_once 'koneksi.php';
 session_start();
+// Cek apakah sudah login
+if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
+    echo
+    "<script>
+    alert('Login first');
+    window.location.href = 'login.php';
+    </script>";
+} else {
+    // 20 * 60 = 1200 detik (20 menit) untuk durasi waktu sesi
+    if ((time() - $_SESSION['last_login_time']) > 1200) {
+        header("location: logout.php");
+    }
+}
+
 $id = $_GET['id'];
 ?>
 <!doctype html>

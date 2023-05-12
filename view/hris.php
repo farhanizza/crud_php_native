@@ -2,8 +2,7 @@
 session_start();
 require_once '../koneksi.php';
 
-$id = $_SESSION['id_user'];
-
+$id = $_SESSION['id_user_employee'];
 
 if (!isset($_SESSION['username']) || $_SESSION['hr_name'] !== 'HRIT_group') {
     echo
@@ -79,36 +78,49 @@ if (!isset($_SESSION['username']) || $_SESSION['hr_name'] !== 'HRIT_group') {
                 </div>
                 <div class="modal-body">
                     <?php
-                    $sql_code = mysqli_query($koneksi, "SELECT hrm_user.`status`, hr_pesan.alasan_form FROM hrm_user 
+                    $sql_code = mysqli_query($koneksi, "SELECT hr_status.status, hr_pesan.alasan_form, hr_insert_dokumen.tanggal_insert
+                    FROM hrm_user 
                     left JOIN employee ON hrm_user.id_employee = employee.id
                     left JOIN hr_pesan ON hr_pesan.id_user = hrm_user.id 
+                    left JOIN hr_status ON hr_status.id_status = hrm_user.id_status
+                    LEFT JOIN hr_insert_dokumen ON hr_insert_dokumen.id_user = hrm_user.id
                     WHERE hrm_user.id_employee = $id");
                     while ($data_notif = mysqli_fetch_array($sql_code)) {
                     ?>
                         <?php
-                        if ($data_notif['status'] == "Dokumen telah ditolak" || $data_notif['status'] == "Sistem membuktikan dokumen palsu") {
+                        if ($data_notif['status'] == "Rejected Form" || $data_notif['status'] == "Document Rejected") {
                             $bg_notif = '#EFBFBF';
                             $h1_color = '#DB3333';
-                            // $p_color = '#5B5B5B';
-                            $p_color = '#fff';
+                            $p_color = '#5B5B5B';
+                            // $p_color = '#fff';
+                            $p_info = 'block';
                             $img = 'rejected.png';
-                        } else if ($data_notif['status'] == "Belum di review") {
+                        } else if ($data_notif['status'] == "Pending Form") {
                             $bg_notif = '#FFEB9D';
                             $h1_color = '#5E4900';
                             $p_color = '#5E4900';
                             $p_info = 'none';
                             $img = 'warning.png';
-                        } else {
+                        } else if ($data_notif['status'] == "Half Approved Form") {
+                            $bg_notif = '#ccfac0';
+                            $h1_color = '#2a8b61';
+                            $p_info = 'none';
+                            $img = 'verified.png';
+                        } else if ($data_notif['status'] == "Approved Form" || $data_notif['status'] == "Document Approved") {
                             $bg_notif = '#ccfac0';
                             $h1_color = '#2a8b61';
                             $p_info = 'none';
                             $img = 'verified.png';
                         }
                         ?>
+                        <?php
+                        $tanggal = $data_notif['tanggal_insert'];
+                        $tanggal_insert = date('d-m-Y', strtotime($tanggal));
+                        ?>
                         <div class="notif-box mb-3" style="background-color: <?php echo $bg_notif ?>;">
                             <div class="d-flex">
                                 <h4 style="color: <?php echo $h1_color ?>;">
-                                    <?php echo $data_notif['status'] ?>
+                                    <?php echo $data_notif['status'] ?> | <?php echo $tanggal_insert ?>
                                 </h4>
                                 <img src="../<?php echo $img ?>" alt="">
                             </div>

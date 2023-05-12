@@ -37,7 +37,7 @@ $provinsi = $_POST['provinsi'];
 $deksripsi = $_POST['deksripsi'];
 $kota = $_POST['kota'];
 $id_provinces = $_POST["id_provinces"];
-$id_employee = $_SESSION['id_user'];
+$id_employee = $_SESSION['id_user_employee'];
 
 
 switch ($_GET["jenis"]) {
@@ -102,20 +102,25 @@ imagejpeg($file, $new_path, $quality);
 move_uploaded_file($file_temp, $new_path);
 
 $sql_code = "INSERT INTO hrm_user (id_employee, nama_lengkap, tujuan_program, start_date, end_date, materi_konten, judul_program, 
-metode_pembelajaran, sertifikat, nama_instansi, lokasi_provinsi, deksripsi, lokasi_kota, status, status_sertifikat) 
+metode_pembelajaran, sertifikat, nama_instansi, lokasi_provinsi, deksripsi, lokasi_kota, id_status, status_sertifikat) 
 VALUES ($id_employee,'$nama_lengkap', '$tujuan_program', '$start_date', '$end_date', '$konten_pelajari', '$judul_program', 
-'$metode_pembelajaran', '$file_name', '$nama_instansi', '$provinsi', '$deksripsi', '$kota', 'Belum di review', 
+'$metode_pembelajaran', '$file_name', '$nama_instansi', '$provinsi', '$deksripsi', '$kota', '0', 
 'Belum melakukan review sertifikat')";
 
 
 
 if (mysqli_query($koneksi, $sql_code)) {
-    $sql_code_nfe = mysqli_query($koneksi, "SELECT id, id_employee FROM hrm_user where id_employee = $id_employee");
+    $sql_code_nfe = mysqli_query($koneksi, "SELECT id, id_employee FROM hrm_user where id_status = '0'");
     $data = mysqli_fetch_array($sql_code_nfe);
-    $_SESSION['id_user_nfe'] = $data['id'];
+    // $_SESSION['id_user_nfe'] = $data['id'];
+    $id_user = $data['id'];
+
+    $date_time = date("Y-m-d H:i:s");
+    mysqli_query($koneksi, "INSERT INTO hr_insert_dokumen (id_employee, id_user, tanggal_insert, id_status) VALUES ('$id_employee', '$id_user','$date_time', '0')");
+
     echo "<script>
             alert('Success: Berhasil ditambahkan');
             window.location.href = 'non_formal_education.php';
             </script>";
-    // var_dump($tujuan_program, $konten_pelajari, $metode_pembelajaran, $nama_instansi);
+    // var_dump($id_employee, $date_time, '0');
 }

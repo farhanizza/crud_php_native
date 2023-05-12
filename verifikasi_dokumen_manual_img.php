@@ -1,5 +1,20 @@
 <?php
 require_once 'koneksi.php';
+session_start();
+// Cek apakah sudah login
+if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
+    echo
+    "<script>
+    alert('Login first');
+    window.location.href = 'login.php';
+    </script>";
+} else {
+    // 20 * 60 = 1200 detik (20 menit) untuk durasi waktu sesi
+    if ((time() - $_SESSION['last_login_time']) > 1200) {
+        header("location: logout.php");
+    }
+}
+
 $id = $_GET['id'];
 ?>
 <!doctype html>
@@ -46,13 +61,15 @@ $id = $_GET['id'];
                         </div>
                     </div>
                 </div>
-                <div class="d-flex justify-content-center flex-column align-items-center mb-5 manual-button">
+                <div class="d-flex flex-column align-items-center mb-5 mt-5 manual-button">
                     <a href="verifikasi_dokumen_asli.php?id=<?php echo $id ?>">
                         <button class="btn btn-success" onclick="">Dokumen Asli</button>
                     </a>
-                    <a href="alasan_menolak_dokumen.php?id=<?php echo $id ?>">
-                        <button class="btn btn-danger btn-palsu">Dokumen Palsu</button>
-                    </a>
+                    <div class="mt-4 mb-4">
+                        <a href="alasan_menolak_dokumen.php?id=<?php echo $id ?>">
+                            <button class="btn btn-danger btn-palsu">Dokumen Palsu</button>
+                        </a>
+                    </div>
                     <a href="verifikasi_dokumen.php?id=<?php echo $id ?>">
                         <button class="btn btn-light">Kembali</button>
                     </a>
