@@ -19,17 +19,25 @@ if ($data_review['status_sertifikat'] == "Belum melakukan review sertifikat") {
     </script>
     ";
 } else {
-    $sql_code = mysqli_query($koneksi, "UPDATE hrm_user SET id_status = '3' WHERE id = $id_user");
+    if ($data_review['status_sertifikat'] == "Sistem membuktikan dokumen asli") {
+        echo "<script>
+        alert('Sistem membuktikan dokumen asli silahkan pencet terima');
+        window.location.href = 'view_non_formal.php?id=$id_user';
+        </script>
+        ";
+    } else {
+        $sql_code = mysqli_query($koneksi, "UPDATE hrm_user SET id_status = '3' WHERE id = $id_user");
 
-    date_default_timezone_set('Asia/Jakarta');
-    $date_time = date("Y-m-d H:i:s");
-    $data_username_admin = $data_admin['username'];
-    mysqli_query($koneksi, "INSERT INTO hr_approved (id_approved, id_user, tanggal_approved, approved_name, id_status) 
-    VALUES ('$id_employee', '$id_user', '$date_time', '$data_username_admin', '3')");
+        date_default_timezone_set('Asia/Jakarta');
+        $date_time = date("Y-m-d H:i:s");
+        $data_username_admin = $data_admin['username'];
+        mysqli_query($koneksi, "INSERT INTO hr_approved (id_approved, id_user, tanggal_approved, approved_name, id_status) 
+        VALUES ('$id_employee', '$id_user', '$date_time', '$data_username_admin', '3')");
 
-    echo "<script>
-    alert('Status ditolak');
-    window.location.href = 'non_formal.php';
-    </script>
-    ";
+        echo "<script>
+        alert('Status ditolak');
+        window.location.href = 'non_formal.php';
+        </script>
+        ";
+    }
 }

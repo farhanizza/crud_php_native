@@ -122,7 +122,7 @@ function truncateString($string, $max_length)
                                     $img_status_belum_review = '<img src="rejected.png" alt="" style="width: 27px; height: 25px; margin: -0.3rem 0 0 0.5rem;">';
                                 }
                                 ?>
-                                <p class="info-verifikasi" style="color: <?php echo $color_text; ?>;"><?php echo $data_view['status_sertifikat'] ?> <?php echo $img_status_belum_review ?> </p>
+                                <p class="info-verifikasi" id="info-verifikasi" style="color: <?php echo $color_text; ?>;"><?php echo $data_view['status_sertifikat'] ?> <?php echo $img_status_belum_review ?> </p>
                                 <div class="verified-box-button">
                                     <a href="verifikasi_dokumen.php?id=<?php echo $id ?>">
                                         <button>
@@ -163,7 +163,7 @@ function truncateString($string, $max_length)
                                     <button class="btn btn-danger" onclick="return confirmRejected()">Tolak</button>
                                 </a>
                                 <a href="update_status_user_acc.php?id=<?php echo $id ?>">
-                                    <button type="submit" class="btn btn-primary simpan" onclick="return confirmAccepted()">Terima</button>
+                                    <button type="submit" class="btn btn-primary simpan" id="btn-simpan" onclick="return confirmAccepted()">Terima</button>
                                 </a>
                             </div>
                         </div>

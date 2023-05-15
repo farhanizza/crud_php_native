@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2023 at 05:28 AM
+-- Generation Time: May 15, 2023 at 10:24 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -39,16 +39,23 @@ CREATE TABLE `employee` (
   `grade_name` varchar(255) NOT NULL,
   `negara` varchar(255) NOT NULL,
   `gender` varchar(255) NOT NULL,
-  `kewarganegaraan` varchar(255) NOT NULL
+  `kewarganegaraan` varchar(255) NOT NULL,
+  `gambar` varchar(255) DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `hr_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`id`, `nik`, `first_name`, `middle_name`, `last_name`, `birth_place`, `regencies`, `birth_date`, `grade_name`, `negara`, `gender`, `kewarganegaraan`) VALUES
-(143, 'GT-01', 'Farhan', 'Izzaturrahman', 'Andiejanto', '36', '9999', '2002-05-12', '2', 'ID', 'Laki-laki', 'WNI'),
-(144, 'INTR-01', 'Jason', '', '', '99', '9999', '1990-04-13', '4', 'CA', 'Laki-laki', 'Expat');
+INSERT INTO `employee` (`id`, `nik`, `first_name`, `middle_name`, `last_name`, `birth_place`, `regencies`, `birth_date`, `grade_name`, `negara`, `gender`, `kewarganegaraan`, `gambar`, `password`, `username`, `hr_name`) VALUES
+(175, 'MB-01', 'HANS', '', '', '36', '3671', '2001-12-12', '2', 'ID', 'Laki-laki', 'WNI', '03-01-18-pm-2023-04-14-myphoto2022.jpg', '$2y$10$f5mjuWhLyjMWTPa3HrrPgO3WUVL8sUyao8Q8/ta2CtZWZtZc9syMm', 'MB-01', 'HRIT_group'),
+(176, 'MB-02', 'FIsda', '', '', '62', '6204', '2001-09-13', '5', 'ID', 'Laki-laki', 'WNI', '04-19-47-pm-2023-04-14-myphoto2022.jpg', '$2y$10$ewplMEhr3H21Ve28vaFoY.GiNAa.19oiBBQbzbLP38MvwNWbMjgp.', 'MB-02', 'LnD_group'),
+(177, 'MB-03', 'Huns', '', '', '63', '6311', '2002-12-12', '3', 'ID', 'Laki-laki', 'WNI', '09-05-39-am-2023-04-17-myphoto2022.jpg', '$2y$10$KL4XeYIHIi2df150oDM1aekkjhCXQeqz9mmZ12zUDU/X5Oix.BPCO', 'MB-03', 'organization_group'),
+(178, 'MB-04', 'JIGS', '', '', '17', '1701', '2001-02-13', '4', 'ID', 'Laki-laki', 'WNI', '09-06-50-am-2023-04-17-myphoto2022.jpg', '$2y$10$y8BYccVxxpyruE6D5RUBnuOHRBpA2SznjOLXCvMLppMRSv4N8nh1W', 'MB-04', 'talent_group'),
+(179, 'MB-05', 'Julio', '', '', '63', '6311', '2001-02-02', '1', 'ID', 'Laki-laki', 'WNI', '02-38-47-pm-2023-04-17-myphoto2022.jpg', '$2y$10$a0OlcIdLxKVmPZmkU88M0OtpIzurU.iyta8q9NrMp.ojU2b/VTVwy', 'MB-05', 'LnD_group');
 
 -- --------------------------------------------------------
 
@@ -327,12 +334,733 @@ CREATE TABLE `hrmposition` (
 --
 
 INSERT INTO `hrmposition` (`position_id`, `position_name`, `position_level`, `parent_id`, `parent_path`) VALUES
-(0, 'PT.GT', 'COM', '-', '-'),
+(0, 'CEO', 'COM', '-', '-'),
 (1, 'POS A', 'UNIT', '3', '0,5,2,4,3'),
 (2, 'POS B', 'DIV', '5', '0,5'),
 (3, 'POS C', 'SEC', '4', '0,5,2,4'),
 (4, 'POS D', 'DEPT', '2', '0,5,2'),
 (5, 'POS E', 'DIR', '0', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hrm_user`
+--
+
+CREATE TABLE `hrm_user` (
+  `id` int(11) NOT NULL,
+  `id_employee` int(11) NOT NULL,
+  `nama_lengkap` varchar(255) NOT NULL,
+  `tujuan_program` varchar(255) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `materi_konten` varchar(255) NOT NULL,
+  `judul_program` varchar(255) NOT NULL,
+  `metode_pembelajaran` varchar(255) NOT NULL,
+  `sertifikat` varchar(255) NOT NULL,
+  `nama_instansi` varchar(255) NOT NULL,
+  `lokasi_provinsi` varchar(255) NOT NULL,
+  `deksripsi` varchar(255) NOT NULL,
+  `lokasi_kota` varchar(255) NOT NULL,
+  `id_status` varchar(255) NOT NULL,
+  `status_sertifikat` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hrm_user`
+--
+
+INSERT INTO `hrm_user` (`id`, `id_employee`, `nama_lengkap`, `tujuan_program`, `start_date`, `end_date`, `materi_konten`, `judul_program`, `metode_pembelajaran`, `sertifikat`, `nama_instansi`, `lokasi_provinsi`, `deksripsi`, `lokasi_kota`, `id_status`, `status_sertifikat`) VALUES
+(74, 175, 'Sit rerum expedita q', 'Program Pengembangan Kreativitas', '2000-08-04', '2022-10-27', 'Pemberdayaan Masyarakat', 'Irure quam tempora v', 'Pembelajaran Jarak Jauh', '02-58-33-pm-2023-05-12-certificate-DQLABBGINRVTCEKQ.pdf', 'Kementerian Pendidikan dan Kebudayaan', '14', 'Est debitis libero ullam laborum Voluptatem Quia expedita fuga', '1408', '2', 'Sistem membuktikan dokumen asli'),
+(75, 176, 'Aut vitae ipsam quas', 'Program Pembelajaran Sepanjang Hayat', '1991-05-16', '1995-10-23', 'Kewirausahaan', 'Exercitationem quos ', 'dsdassad', '02-59-16-pm-2023-05-12-certificate-DQLABSQLT1VJUHJR.pdf', 'Eos et dolores irur', '72', 'Cumque ad elit laboris qui optio cillum quia minima harum commodi in fuga Vitae rerum illo aperiam', '7202', '3', 'Sistem membuktikan dokumen palsu'),
+(76, 176, 'Quae ut fugiat sit ', 'Pelatihan Kewirausahaan', '1987-11-14', '1995-07-11', 'Keterampilan Soft Skills', 'Odit provident face', 'Program Mentoring dan Pembinaan', '03-04-24-pm-2023-05-12-certificate-DQLABBGINRVTCEKQ.pdf', 'PT. Telekomunikasi Tbk', '31', 'Ex tempora consectetur non enim aut itaque sapiente accusantium quisquam sed harum dolor', '3101', '3', 'Sistem membuktikan dokumen palsu');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hr_approved`
+--
+
+CREATE TABLE `hr_approved` (
+  `id` int(11) NOT NULL,
+  `id_approved` varchar(255) NOT NULL,
+  `id_user` varchar(255) NOT NULL,
+  `tanggal_approved` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `approved_name` varchar(255) NOT NULL,
+  `id_status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hr_approved`
+--
+
+INSERT INTO `hr_approved` (`id`, `id_approved`, `id_user`, `tanggal_approved`, `approved_name`, `id_status`) VALUES
+(42, '8', '74', '2023-05-12 14:59:53', 'admin', '4'),
+(43, '8', '74', '2023-05-12 15:00:15', 'admin', '2'),
+(44, '8', '75', '2023-05-12 15:01:20', 'admin', '5'),
+(45, '8', '75', '2023-05-12 15:01:34', 'admin', '3'),
+(46, '8', '76', '2023-05-12 15:05:06', 'admin', '5'),
+(47, '8', '76', '2023-05-12 15:05:10', 'admin', '3'),
+(48, '8', '76', '2023-05-15 10:29:12', 'admin', '5'),
+(49, '8', '76', '2023-05-15 10:30:28', 'admin', '5'),
+(50, '8', '76', '2023-05-15 15:07:08', 'admin', '3'),
+(51, '8', '74', '2023-05-15 15:08:40', 'admin', '2');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hr_category`
+--
+
+CREATE TABLE `hr_category` (
+  `id` int(11) NOT NULL,
+  `category` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hr_category`
+--
+
+INSERT INTO `hr_category` (`id`, `category`) VALUES
+(1, 'Talent Acquisition'),
+(2, 'Talent Management'),
+(3, 'Organizational Development'),
+(4, 'Learning and Development'),
+(5, 'Payroll'),
+(6, 'Policy'),
+(7, 'Human Resources Information System'),
+(8, 'Human Resources Operations'),
+(9, 'Human Resources Performance Management');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hr_collab`
+--
+
+CREATE TABLE `hr_collab` (
+  `id` int(11) NOT NULL,
+  `id_hr` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hr_collab`
+--
+
+INSERT INTO `hr_collab` (`id`, `id_hr`, `name`) VALUES
+(1, '1,2', 'talent_group'),
+(2, '3,6', 'organization_group'),
+(3, '4,5', 'LnD_group'),
+(4, '7,8,9', 'HRIT_group');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hr_insert_dokumen`
+--
+
+CREATE TABLE `hr_insert_dokumen` (
+  `id` int(11) NOT NULL,
+  `id_employee` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `tanggal_insert` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `id_status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hr_insert_dokumen`
+--
+
+INSERT INTO `hr_insert_dokumen` (`id`, `id_employee`, `id_user`, `tanggal_insert`, `id_status`) VALUES
+(31, 175, 74, '2023-05-12 14:58:33', '0'),
+(32, 176, 75, '2023-05-12 14:59:16', '0'),
+(33, 176, 76, '2023-05-12 15:04:24', '0'),
+(34, 176, 77, '2023-05-15 08:43:02', '0'),
+(35, 176, 78, '2023-05-15 08:44:53', '0'),
+(36, 176, 79, '2023-05-15 08:46:30', '0'),
+(37, 176, 80, '2023-05-15 08:47:30', '0'),
+(38, 176, 81, '2023-05-15 08:49:49', '0'),
+(39, 176, 82, '2023-05-15 09:01:39', '0'),
+(40, 176, 83, '2023-05-15 09:03:27', '0'),
+(41, 176, 84, '2023-05-15 09:10:42', '0'),
+(42, 176, 85, '2023-05-15 09:12:40', '0'),
+(43, 176, 86, '2023-05-15 09:14:16', '0'),
+(44, 176, 87, '2023-05-15 09:19:26', '0'),
+(45, 176, 88, '2023-05-15 09:23:53', '0'),
+(46, 175, 89, '2023-05-15 09:39:02', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hr_instansi`
+--
+
+CREATE TABLE `hr_instansi` (
+  `id` int(11) NOT NULL,
+  `nama_instansi` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hr_instansi`
+--
+
+INSERT INTO `hr_instansi` (`id`, `nama_instansi`) VALUES
+(1, 'PT. Gajah Tunggal Tbk.'),
+(2, 'Kementerian Pendidikan dan Kebudayaan'),
+(3, 'Badan Penjaminan Mutu Pendidikan'),
+(4, 'Lembaga Pengembangan dan Pemberdayaan Bahasa'),
+(5, 'PT. Telekomunikasi Tbk'),
+(6, 'Universitas Bina Nusantara');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hr_materi`
+--
+
+CREATE TABLE `hr_materi` (
+  `id` int(11) NOT NULL,
+  `materi_konten` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hr_materi`
+--
+
+INSERT INTO `hr_materi` (`id`, `materi_konten`) VALUES
+(1, 'Keterampilan Teknis'),
+(2, 'Keterampilan Soft Skills'),
+(3, 'Literasi dan Numerasi'),
+(4, 'Pemberdayaan Masyarakat'),
+(5, 'Kewirausahaan'),
+(6, 'Seni dan Kreativitas'),
+(7, 'Pembelajaran Sepanjang Hayat'),
+(8, 'Keterampilan Hidup');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hr_metode_pembelajaran`
+--
+
+CREATE TABLE `hr_metode_pembelajaran` (
+  `id` int(11) NOT NULL,
+  `metode_pembelajaran` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hr_metode_pembelajaran`
+--
+
+INSERT INTO `hr_metode_pembelajaran` (`id`, `metode_pembelajaran`) VALUES
+(1, 'Pembelajaraan Berbasis Proyek'),
+(2, 'Diskusi Kelompok'),
+(3, 'Simulasi'),
+(4, 'Mentorship'),
+(5, 'Pembelajaran Jarak Jauh'),
+(6, 'Kursus Singkat atau Pelatihan Intensif'),
+(7, 'Pameran atau Workshop'),
+(8, 'Praktek Lapangan'),
+(9, 'Program Mentoring dan Pembinaan'),
+(10, 'Pembelajaran Keterampilan Hidup');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hr_pesan`
+--
+
+CREATE TABLE `hr_pesan` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `alasan_form` varchar(255) NOT NULL,
+  `id_status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hr_pesan`
+--
+
+INSERT INTO `hr_pesan` (`id`, `id_user`, `alasan_form`, `id_status`) VALUES
+(30, 75, 'nomor tidak valid', '3'),
+(31, 76, 'gatau', '3');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hr_sertifikat`
+--
+
+CREATE TABLE `hr_sertifikat` (
+  `id` int(11) NOT NULL,
+  `nomor_sertifikat` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hr_sertifikat`
+--
+
+INSERT INTO `hr_sertifikat` (`id`, `nomor_sertifikat`) VALUES
+(1, '123456789'),
+(2, '11223344556677'),
+(3, '1x20123SVII'),
+(4, '2x20123SGVIX');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hr_status`
+--
+
+CREATE TABLE `hr_status` (
+  `id` int(11) NOT NULL,
+  `id_status` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hr_status`
+--
+
+INSERT INTO `hr_status` (`id`, `id_status`, `status`) VALUES
+(1, '0', 'Pending Form'),
+(2, '1', 'Half Approved Form'),
+(3, '2', 'Approved Form'),
+(4, '3', 'Rejected Form'),
+(5, '4', 'Document Approved'),
+(6, '5', 'Document Rejected');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hr_tujuan_program`
+--
+
+CREATE TABLE `hr_tujuan_program` (
+  `id` int(11) NOT NULL,
+  `tujuan_program` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hr_tujuan_program`
+--
+
+INSERT INTO `hr_tujuan_program` (`id`, `tujuan_program`) VALUES
+(1, 'Pelatihan Keterampilan Kerja'),
+(2, 'Program Pemberdayaan Masyarakat'),
+(3, 'Pelatihan Literasi'),
+(4, 'Program Pengembangan Kreativitas'),
+(5, 'Pelatihan Kewirausahaan'),
+(6, 'Program Pembelajaran Sepanjang Hayat'),
+(7, 'Pelatihan Kecakapan Sosial');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `log_server`
+--
+
+CREATE TABLE `log_server` (
+  `id` int(11) NOT NULL,
+  `name_server` varchar(255) DEFAULT NULL,
+  `info` varchar(255) DEFAULT NULL,
+  `time_date` varchar(255) DEFAULT NULL,
+  `qr_scan` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `log_server`
+--
+
+INSERT INTO `log_server` (`id`, `name_server`, `info`, `time_date`, `qr_scan`) VALUES
+(1062, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 09:20:23', ''),
+(1063, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 09:20:25', ''),
+(1064, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 09:39:22', ''),
+(1065, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 09:39:24', ''),
+(1066, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 09:44:22', ''),
+(1067, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 09:44:26', ''),
+(1068, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 09:48:17', ''),
+(1069, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 10:00:59', ''),
+(1070, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 10:01:01', ''),
+(1071, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 10:03:08', ''),
+(1072, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 10:03:10', ''),
+(1073, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 10:04:06', ''),
+(1074, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 10:12:36', ''),
+(1075, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 12:05:26', ''),
+(1076, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 12:06:34', ''),
+(1077, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 12:06:36', ''),
+(1078, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 12:07:55', ''),
+(1079, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 12:25:34', ''),
+(1080, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 12:26:51', ''),
+(1081, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 12:27:09', ''),
+(1082, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 12:30:51', ''),
+(1083, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 12:38:01', ''),
+(1084, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 12:38:03', ''),
+(1085, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 12:48:07', ''),
+(1086, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 12:56:53', ''),
+(1087, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 12:56:54', ''),
+(1088, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 12:57:19', ''),
+(1089, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 13:23:00', ''),
+(1090, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 14:01:12', ''),
+(1091, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 14:05:03', ''),
+(1092, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 14:05:05', ''),
+(1093, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 14:06:26', ''),
+(1094, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 14:06:34', ''),
+(1095, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 14:06:37', ''),
+(1096, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 14:20:10', ''),
+(1097, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 14:27:59', ''),
+(1098, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 14:28:17', ''),
+(1099, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 14:50:16', ''),
+(1100, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 14:50:19', ''),
+(1101, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 14:58:40', ''),
+(1102, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 14:58:41', ''),
+(1103, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 14:59:53', ''),
+(1104, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:00:58', ''),
+(1105, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:01:00', ''),
+(1106, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:01:08', ''),
+(1107, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:08:53', ''),
+(1108, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:08:57', ''),
+(1109, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:10:58', ''),
+(1110, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:15:20', ''),
+(1111, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:15:24', ''),
+(1112, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:17:37', ''),
+(1113, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:18:37', ''),
+(1114, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:22:17', ''),
+(1115, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:22:19', ''),
+(1116, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:22:57', ''),
+(1117, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:27:14', ''),
+(1118, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:27:18', ''),
+(1119, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:27:30', ''),
+(1120, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:28:37', ''),
+(1121, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:29:44', ''),
+(1122, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:29:46', ''),
+(1123, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:30:02', ''),
+(1124, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:31:30', ''),
+(1125, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:31:53', ''),
+(1126, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:31:55', ''),
+(1127, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:32:23', ''),
+(1128, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:34:56', ''),
+(1129, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:38:20', ''),
+(1130, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:38:20', ''),
+(1131, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:38:21', ''),
+(1132, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:38:21', ''),
+(1133, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:38:21', ''),
+(1134, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:38:21', ''),
+(1135, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:38:21', ''),
+(1136, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:38:21', ''),
+(1137, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:38:22', ''),
+(1138, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:39:43', ''),
+(1139, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:41:00', ''),
+(1140, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:41:04', ''),
+(1141, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:43:20', ''),
+(1142, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:44:08', ''),
+(1143, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:44:24', ''),
+(1144, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:44:26', ''),
+(1145, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:46:18', ''),
+(1146, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:46:20', ''),
+(1147, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:47:36', ''),
+(1148, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:48:54', ''),
+(1149, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:48:56', ''),
+(1150, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:49:34', ''),
+(1151, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:53:31', ''),
+(1152, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:54:38', ''),
+(1153, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:55:14', ''),
+(1154, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:55:16', ''),
+(1155, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:55:23', ''),
+(1156, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:56:28', ''),
+(1157, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:56:29', ''),
+(1158, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 15:57:10', ''),
+(1159, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 16:05:40', ''),
+(1160, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 16:06:40', ''),
+(1161, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 16:06:59', ''),
+(1162, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 16:07:01', ''),
+(1163, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 16:07:17', ''),
+(1164, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 16:08:23', ''),
+(1165, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 16:08:25', ''),
+(1166, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 16:08:58', ''),
+(1167, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 16:15:09', ''),
+(1168, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 16:15:34', ''),
+(1169, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 16:29:40', ''),
+(1170, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 16:29:41', ''),
+(1171, 'localhost', 'User masuk ke halaman login', '2023-05-09 : 16:37:57', ''),
+(1172, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 08:10:58', ''),
+(1173, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 08:25:00', ''),
+(1174, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 08:25:02', ''),
+(1175, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 08:27:56', ''),
+(1176, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 08:31:14', ''),
+(1177, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 08:32:28', ''),
+(1178, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 08:32:30', ''),
+(1179, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 08:33:06', ''),
+(1180, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 08:48:53', ''),
+(1181, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 08:48:55', ''),
+(1182, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 08:55:26', ''),
+(1183, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 08:55:45', ''),
+(1184, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 08:55:49', ''),
+(1185, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 08:56:25', ''),
+(1186, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 08:58:07', ''),
+(1187, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 08:58:09', ''),
+(1188, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 08:59:30', ''),
+(1189, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 09:00:25', ''),
+(1190, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 09:00:27', ''),
+(1191, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 09:01:38', ''),
+(1192, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 09:10:27', ''),
+(1193, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 09:10:29', ''),
+(1194, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 09:10:55', ''),
+(1195, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 09:11:59', ''),
+(1196, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 09:12:00', ''),
+(1197, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 09:53:21', ''),
+(1198, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 09:53:24', ''),
+(1199, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 10:02:43', ''),
+(1200, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 10:07:07', ''),
+(1201, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 10:07:08', ''),
+(1202, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 10:11:12', ''),
+(1203, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 10:11:33', ''),
+(1204, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 10:11:38', ''),
+(1205, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 10:11:50', ''),
+(1206, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 10:12:45', ''),
+(1207, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 10:49:05', ''),
+(1208, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 10:49:07', ''),
+(1209, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 10:49:57', ''),
+(1210, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 12:04:04', ''),
+(1211, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 12:05:39', ''),
+(1212, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 12:16:26', ''),
+(1213, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 12:16:45', ''),
+(1214, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 12:19:01', ''),
+(1215, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 12:31:05', ''),
+(1216, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 12:31:06', ''),
+(1217, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 14:10:56', ''),
+(1218, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 14:11:00', ''),
+(1219, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 14:14:07', ''),
+(1220, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 14:15:09', ''),
+(1221, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 14:15:11', ''),
+(1222, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 14:16:02', ''),
+(1223, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 14:16:34', ''),
+(1224, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 14:16:35', ''),
+(1225, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 14:34:50', ''),
+(1226, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 14:37:18', ''),
+(1227, 'localhost', 'User melakukan open qr scan', '2023-05-10 : 14:37:20', 'qr_open_scanned'),
+(1228, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 14:37:23', ''),
+(1229, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 16:02:06', ''),
+(1230, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 16:02:50', ''),
+(1231, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 16:19:14', ''),
+(1232, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 16:21:49', ''),
+(1233, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 16:23:33', ''),
+(1234, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 16:23:37', ''),
+(1235, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 16:30:48', ''),
+(1236, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 16:31:02', ''),
+(1237, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 16:31:03', ''),
+(1238, 'localhost', 'User masuk ke halaman login', '2023-05-10 : 16:31:25', ''),
+(1239, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 08:08:32', ''),
+(1240, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 08:41:12', ''),
+(1241, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 08:41:14', ''),
+(1242, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 08:43:04', ''),
+(1243, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 08:44:02', ''),
+(1244, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 08:44:04', ''),
+(1245, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 08:52:17', ''),
+(1246, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 09:39:29', ''),
+(1247, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 09:39:31', ''),
+(1248, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 10:05:38', ''),
+(1249, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 10:30:06', ''),
+(1250, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 10:30:45', ''),
+(1251, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 10:56:27', ''),
+(1252, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 10:56:29', ''),
+(1253, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 10:58:10', ''),
+(1254, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 12:07:53', ''),
+(1255, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 12:07:55', ''),
+(1256, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 12:08:01', ''),
+(1257, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 12:08:08', ''),
+(1258, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 12:08:09', ''),
+(1259, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 12:08:28', ''),
+(1260, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 12:11:39', ''),
+(1261, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 12:11:41', ''),
+(1262, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 13:01:21', ''),
+(1263, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 13:01:23', ''),
+(1264, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 13:01:48', ''),
+(1265, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 13:01:50', ''),
+(1266, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 13:01:55', ''),
+(1267, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 13:01:57', ''),
+(1268, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 13:16:15', ''),
+(1269, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 14:05:27', ''),
+(1270, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 14:05:29', ''),
+(1271, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 14:08:25', ''),
+(1272, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 14:08:28', ''),
+(1273, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 14:28:24', ''),
+(1274, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 14:28:36', ''),
+(1275, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 14:30:27', ''),
+(1276, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 14:30:28', ''),
+(1277, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 15:40:12', ''),
+(1278, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 15:40:14', ''),
+(1279, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 16:12:54', ''),
+(1280, 'localhost', 'User masuk ke halaman login', '2023-05-11 : 16:12:56', ''),
+(1281, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 08:24:11', ''),
+(1282, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 08:45:14', ''),
+(1283, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 08:45:16', ''),
+(1284, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 08:49:23', ''),
+(1285, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 08:51:48', ''),
+(1286, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 08:51:51', ''),
+(1287, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 08:52:03', ''),
+(1288, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 08:58:58', ''),
+(1289, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 08:58:59', ''),
+(1290, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 09:03:48', ''),
+(1291, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 09:06:12', ''),
+(1292, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 09:06:14', ''),
+(1293, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 09:16:01', ''),
+(1294, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 09:37:42', ''),
+(1295, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 09:37:44', ''),
+(1296, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 09:38:07', ''),
+(1297, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 09:42:31', ''),
+(1298, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 09:42:33', ''),
+(1299, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 09:42:48', ''),
+(1300, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 10:13:29', ''),
+(1301, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 10:13:32', ''),
+(1302, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 10:21:22', ''),
+(1303, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 10:21:25', ''),
+(1304, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 10:21:43', ''),
+(1305, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 10:22:30', ''),
+(1306, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 10:23:27', ''),
+(1307, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 10:24:21', ''),
+(1308, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 10:25:04', ''),
+(1309, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 10:25:06', ''),
+(1310, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 10:57:43', ''),
+(1311, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 10:57:45', ''),
+(1312, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 11:00:46', ''),
+(1313, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 11:08:28', ''),
+(1314, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 11:11:08', ''),
+(1315, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 11:11:13', ''),
+(1316, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 11:11:14', ''),
+(1317, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 11:11:19', ''),
+(1318, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 11:11:20', ''),
+(1319, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 11:11:32', ''),
+(1320, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 11:11:34', ''),
+(1321, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 11:18:12', ''),
+(1322, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 11:18:14', ''),
+(1323, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 11:19:18', ''),
+(1324, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 11:19:19', ''),
+(1325, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 11:19:54', ''),
+(1326, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 11:20:29', ''),
+(1327, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 11:24:16', ''),
+(1328, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 11:30:03', ''),
+(1329, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 11:30:05', ''),
+(1330, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:14:34', ''),
+(1331, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:14:37', ''),
+(1332, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:15:34', ''),
+(1333, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:16:59', ''),
+(1334, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:17:15', ''),
+(1335, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:17:28', ''),
+(1336, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:26:49', ''),
+(1337, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:26:53', ''),
+(1338, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:28:19', ''),
+(1339, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:28:53', ''),
+(1340, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:28:55', ''),
+(1341, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:29:19', ''),
+(1342, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:29:21', ''),
+(1343, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:29:27', ''),
+(1344, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:29:30', ''),
+(1345, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:41:09', ''),
+(1346, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:41:56', ''),
+(1347, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:41:58', ''),
+(1348, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:52:40', ''),
+(1349, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:52:47', ''),
+(1350, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:56:38', ''),
+(1351, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:57:06', ''),
+(1352, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 13:57:22', ''),
+(1353, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:00:55', ''),
+(1354, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:02:19', ''),
+(1355, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:03:07', ''),
+(1356, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:03:56', ''),
+(1357, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:09:33', ''),
+(1358, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:09:54', ''),
+(1359, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:11:11', ''),
+(1360, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:12:35', ''),
+(1361, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:13:22', ''),
+(1362, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:15:21', ''),
+(1363, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:19:05', ''),
+(1364, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:19:38', ''),
+(1365, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:42:48', ''),
+(1366, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:43:30', ''),
+(1367, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:43:32', ''),
+(1368, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:44:38', ''),
+(1369, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:44:42', ''),
+(1370, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:45:03', ''),
+(1371, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:45:04', ''),
+(1372, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:47:08', ''),
+(1373, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:47:20', ''),
+(1374, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:47:21', ''),
+(1375, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:47:26', ''),
+(1376, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:47:29', ''),
+(1377, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:50:21', ''),
+(1378, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:50:23', ''),
+(1379, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:50:59', ''),
+(1380, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:55:39', ''),
+(1381, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:56:26', ''),
+(1382, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:58:52', ''),
+(1383, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:59:30', ''),
+(1384, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 14:59:31', ''),
+(1385, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 15:00:32', ''),
+(1386, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 15:00:45', ''),
+(1387, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 15:01:01', ''),
+(1388, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 15:01:03', ''),
+(1389, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 15:04:31', ''),
+(1390, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 15:06:25', ''),
+(1391, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 15:06:40', ''),
+(1392, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 15:13:48', ''),
+(1393, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 15:15:56', ''),
+(1394, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 15:18:55', ''),
+(1395, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 15:20:02', ''),
+(1396, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 15:20:18', ''),
+(1397, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 15:57:32', ''),
+(1398, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 15:57:34', ''),
+(1399, 'localhost', 'User masuk ke halaman login', '2023-05-12 : 16:17:40', ''),
+(1400, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 08:23:01', ''),
+(1401, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 08:23:08', ''),
+(1402, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 08:23:26', ''),
+(1403, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 08:23:28', ''),
+(1404, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 08:25:47', ''),
+(1405, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 08:32:39', ''),
+(1406, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 09:33:12', ''),
+(1407, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 09:35:32', ''),
+(1408, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 09:36:26', ''),
+(1409, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 09:36:27', ''),
+(1410, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 09:36:47', ''),
+(1411, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 10:13:23', ''),
+(1412, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 10:13:25', ''),
+(1413, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 10:22:30', ''),
+(1414, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 10:22:32', ''),
+(1415, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 10:35:38', ''),
+(1416, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 10:36:08', ''),
+(1417, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 10:36:14', ''),
+(1418, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 10:36:55', ''),
+(1419, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 10:37:38', ''),
+(1420, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 10:37:40', ''),
+(1421, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 10:41:35', ''),
+(1422, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 10:42:07', ''),
+(1423, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 10:53:11', ''),
+(1424, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 12:00:56', ''),
+(1425, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 12:02:01', ''),
+(1426, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 12:02:03', ''),
+(1427, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 12:15:22', ''),
+(1428, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 12:15:26', ''),
+(1429, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 12:15:39', ''),
+(1430, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 12:15:47', ''),
+(1431, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 12:35:53', ''),
+(1432, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 12:38:12', ''),
+(1433, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 12:38:27', ''),
+(1434, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 12:41:42', ''),
+(1435, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 12:43:04', ''),
+(1436, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 12:44:10', ''),
+(1437, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 12:56:43', ''),
+(1438, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 14:00:48', ''),
+(1439, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 14:12:07', ''),
+(1440, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 14:37:42', ''),
+(1441, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 14:45:31', ''),
+(1442, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 14:47:11', ''),
+(1443, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 14:47:14', ''),
+(1444, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 14:47:16', ''),
+(1445, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 14:47:20', ''),
+(1446, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 14:47:22', ''),
+(1447, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 15:01:04', ''),
+(1448, 'localhost', 'User masuk ke halaman login', '2023-05-15 : 15:01:07', '');
 
 -- --------------------------------------------------------
 
@@ -385,6 +1113,29 @@ INSERT INTO `provinces` (`id`, `name`) VALUES
 ('91', 'PAPUA BARAT'),
 ('94', 'PAPUA'),
 ('99', 'WNA');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `qr_code`
+--
+
+CREATE TABLE `qr_code` (
+  `id` int(11) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `qr_code`
+--
+
+INSERT INTO `qr_code` (`id`, `token`, `status`) VALUES
+(12, '9a85c957c31208790e9ddfafd90f8138', 'valid_token'),
+(13, '11c530e5893988f3e79176c44224cf6a', 'valid_token'),
+(14, 'f877d0bb17eda0fbd3d0a38856dc1426', 'valid_token'),
+(15, 'da43aa726be93b2cd30dd730d6aab2e7', 'valid_token'),
+(16, 'efbfb9bc046506bdc6af0406a89ca54d', 'valid_token');
 
 -- --------------------------------------------------------
 
@@ -919,6 +1670,55 @@ INSERT INTO `regencies` (`id`, `province_id`, `name`) VALUES
 ('9471', '94', 'KOTA JAYAPURA'),
 ('9999', '99', 'WNA');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `register`
+--
+
+CREATE TABLE `register` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `level` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `register`
+--
+
+INSERT INTO `register` (`id`, `username`, `password`, `email`, `level`) VALUES
+(5, 'hanizza', '$2y$10$5kIAsooY3YbmlykTOAJxZufW8iZVpe2t2fIzoKrTZZtOJ5yK9k1ue', 'hanizza46@gmail.com', '0'),
+(8, 'admin', '$2y$10$1L/tNJ3z0uYNBOxxMAhDnO2PLRFUg2LXHHjtepeM1vLgiJpz6ilVO', 'admin@gmail.com', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reset_password`
+--
+
+CREATE TABLE `reset_password` (
+  `id` int(11) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `status_change` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `reset_password`
+--
+
+INSERT INTO `reset_password` (`id`, `token`, `email`, `status_change`) VALUES
+(35, '7c5cbc9a75d0e13519510396ff5662d315593342725119729b5ce7b956efacab', 'hanizza46@gmail.com', 'invalid_token'),
+(36, '951b62a99cb07f681c4ef93b4a012a4d174a30495ba04f4e7e1ed1a959c844e4', 'hanizza46@gmail.com', 'invalid_token'),
+(37, 'c56341ba3ebdd35cd79e00377da7c31ceb0a7959b37fcb342b2c852c7e63f565', 'hanizza46@gmail.com', 'invalid_token'),
+(38, 'b377a377d2e9bbf570a227e9d1cd04dca2ff4c2d5aee782599408058340490ad', 'hanizza46@gmail.com', 'invalid_token'),
+(39, '33ae24063d7346424f38e74cce04433ddbad822e81cf5bf475d7b44733f94943', 'hanizza46@gmail.com', 'invalid_token'),
+(40, '53fb6f71348ccc68cad805e4820b2e0ced7881c3e3e6a695dff3edc4f8d15cf2', 'hanizza46@gmail.com', 'valid_token'),
+(41, 'ea28b18348cb0888e696fcc191758e4b858b07b8f39600d414176464a262d305', 'hanizza46@gmail.com', 'valid_token'),
+(42, '518faab1b96f91e3d53c3bf00dbc55c3e2a0fa2313d32142043dba287dd32d12', 'hanizza46@gmail.com', 'valid_token');
+
 --
 -- Indexes for dumped tables
 --
@@ -944,9 +1744,93 @@ ALTER TABLE `hrmposition`
   ADD PRIMARY KEY (`position_id`);
 
 --
+-- Indexes for table `hrm_user`
+--
+ALTER TABLE `hrm_user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hr_approved`
+--
+ALTER TABLE `hr_approved`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hr_category`
+--
+ALTER TABLE `hr_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hr_collab`
+--
+ALTER TABLE `hr_collab`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hr_insert_dokumen`
+--
+ALTER TABLE `hr_insert_dokumen`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hr_instansi`
+--
+ALTER TABLE `hr_instansi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hr_materi`
+--
+ALTER TABLE `hr_materi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hr_metode_pembelajaran`
+--
+ALTER TABLE `hr_metode_pembelajaran`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hr_pesan`
+--
+ALTER TABLE `hr_pesan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hr_sertifikat`
+--
+ALTER TABLE `hr_sertifikat`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hr_status`
+--
+ALTER TABLE `hr_status`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hr_tujuan_program`
+--
+ALTER TABLE `hr_tujuan_program`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `log_server`
+--
+ALTER TABLE `log_server`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `provinces`
 --
 ALTER TABLE `provinces`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `qr_code`
+--
+ALTER TABLE `qr_code`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -957,6 +1841,18 @@ ALTER TABLE `regencies`
   ADD KEY `regencies_province_id_index` (`province_id`);
 
 --
+-- Indexes for table `register`
+--
+ALTER TABLE `register`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `reset_password`
+--
+ALTER TABLE `reset_password`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -964,7 +1860,97 @@ ALTER TABLE `regencies`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=180;
+
+--
+-- AUTO_INCREMENT for table `hrm_user`
+--
+ALTER TABLE `hrm_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+
+--
+-- AUTO_INCREMENT for table `hr_approved`
+--
+ALTER TABLE `hr_approved`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
+--
+-- AUTO_INCREMENT for table `hr_collab`
+--
+ALTER TABLE `hr_collab`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `hr_insert_dokumen`
+--
+ALTER TABLE `hr_insert_dokumen`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- AUTO_INCREMENT for table `hr_instansi`
+--
+ALTER TABLE `hr_instansi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `hr_materi`
+--
+ALTER TABLE `hr_materi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `hr_metode_pembelajaran`
+--
+ALTER TABLE `hr_metode_pembelajaran`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `hr_pesan`
+--
+ALTER TABLE `hr_pesan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT for table `hr_sertifikat`
+--
+ALTER TABLE `hr_sertifikat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `hr_status`
+--
+ALTER TABLE `hr_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `hr_tujuan_program`
+--
+ALTER TABLE `hr_tujuan_program`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `log_server`
+--
+ALTER TABLE `log_server`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1449;
+
+--
+-- AUTO_INCREMENT for table `qr_code`
+--
+ALTER TABLE `qr_code`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `register`
+--
+ALTER TABLE `register`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `reset_password`
+--
+ALTER TABLE `reset_password`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Constraints for dumped tables
