@@ -51,7 +51,7 @@ $id = $_GET['id'];
                         <div class="text-inform">
                             <p>*Hal terpenting ketika cek manual</p>
                             <p>*Cek nama insitusi yang menerbitkan sertifikat</p>
-                            <p>*Periksa tanda tangan dan stempel</p>
+                            <p>*Periksa tanda tangan dan stempel (Jika ada)</p>
                             <p>*Verifikasi melalui pihak yang menerbitkan sertifikat</p>
                         </div>
                     </div>

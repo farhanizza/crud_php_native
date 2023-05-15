@@ -101,6 +101,15 @@ imagejpeg($file, $new_path, $quality);
 // pdf
 move_uploaded_file($file_temp, $new_path);
 
+// Validasi space
+if (empty(trim($nama_lengkap)) || empty(trim($tujuan_program)) || empty(trim($konten_pelajari)) || empty(trim($judul_program)) || empty(trim($metode_pembelajaran)) || empty(trim($nama_instansi)) || empty(trim($deksripsi))) {
+    echo "<script>
+            alert('Failed: inputan tidak boleh kosong atau berisi spasi');
+            window.location.href = 'non_formal_education.php';
+            </script>";
+    return false;
+}
+
 $sql_code = "INSERT INTO hrm_user (id_employee, nama_lengkap, tujuan_program, start_date, end_date, materi_konten, judul_program, 
 metode_pembelajaran, sertifikat, nama_instansi, lokasi_provinsi, deksripsi, lokasi_kota, id_status, status_sertifikat) 
 VALUES ($id_employee,'$nama_lengkap', '$tujuan_program', '$start_date', '$end_date', '$konten_pelajari', '$judul_program', 

@@ -8,6 +8,15 @@ $id_user = $_POST['id_user'];
 $id_employee = $_SESSION['id_user_admin'];
 $username_admin = $_SESSION['username_admin'];
 
+// validasi jika inoutan kosong atau spasi
+if (empty(trim($nomor_sertifikat))) {
+    echo "<script>
+            alert('Failed: inputan tidak boleh kosong atau berisi spasi');
+            window.history.back();
+            </script>";
+    return false;
+}
+
 $cek_nomor = mysqli_query($koneksi, "SELECT nomor_sertifikat FROM hr_sertifikat WHERE nomor_sertifikat = $nomor_sertifikat");
 
 $sql_code_admin = mysqli_query($koneksi, "SELECT username FROM register where username = '$username_admin'");

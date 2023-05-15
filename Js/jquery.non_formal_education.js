@@ -77,11 +77,11 @@ $(document).ready(function () {
 		var selectedOption = $('option:selected', this).text();
 		if (selectedOption === 'Lainnya') {
 			$('#pilih_materi_text').show();
-			$('#pilih_materi_text').attr('required', true);
+			$('#pilih_materi_text').prop('required', true);
 			$('#konten_pelajari').hide();
 		} else {
 			$('#pilih_materi_text').hide();
-			$('#pilih_materi_text').attr('required', false);
+			$('#pilih_materi_text').prop('required', false);
 			$('#konten_pelajari').show();
 		}
 	});
@@ -93,11 +93,11 @@ $(document).ready(function () {
 		var selectedOption = $('option:selected', this).text();
 		if (selectedOption === 'Lainnya') {
 			$('#metode_pembelajaran_text').show();
-			$('#metode_pembelajaran_text').attr('required', true);
+			$('#metode_pembelajaran_text').prop('required', true);
 			$('#metode_pembelajaran').hide();
 		} else {
 			$('#metode_pembelajaran_text').hide();
-			$('#metode_pembelajaran_text').attr('required', false);
+			$('#metode_pembelajaran_text').prop('required', false);
 			$('#metode_pembelajaran').show();
 		}
 	});
@@ -109,11 +109,11 @@ $(document).ready(function () {
 		var selectedOption = $('option:selected', this).text();
 		if (selectedOption === 'Lainnya') {
 			$('#nama_instansi_text').show();
-			$('#nama_instansi_text').attr('required', true);
+			$('#nama_instansi_text').prop('required', true);
 			$('#nama_instansi').hide();
 		} else {
 			$('#nama_instansi_text').hide();
-			$('#nama_instansi_text').attr('required', false);
+			$('#nama_instansi_text').prop('required', false);
 			$('#nama_instansi').show();
 		}
 	});

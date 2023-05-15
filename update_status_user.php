@@ -6,7 +6,18 @@ $id_user = $_POST['id_user'];
 $id_employee = $_SESSION['id_user_admin'];
 $username_admin = $_SESSION['username_admin'];
 
+
 $pesan = $_POST['pesan'];
+
+if (empty(trim($pesan))) {
+    echo "<script>
+        alert('Inputan tidak boleh kosong');
+        window.history.back();
+    </script>";
+
+    return false;
+}
+
 $sql_code = mysqli_query($koneksi, "INSERT INTO hr_pesan (id_user, alasan_form, id_status) VALUES ($id_user, '$pesan', '3')");
 
 $sql_code_admin = mysqli_query($koneksi, "SELECT username FROM register where username = '$username_admin'");

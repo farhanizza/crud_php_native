@@ -47,7 +47,7 @@ session_start();
                             </select>
 
                             <div class="tujuan_program_text" id="tujuan_program_text" style="display: none;">
-                                <input type="text" name="tujuan_program_text" placeholder="Lainnya" onkeydown="return /[A-Z0-9 ]/i.test(event.key)" autocomplete="off">
+                                <input type="text" name="tujuan_program_text" id="tujuan_program_text" placeholder="Lainnya" onkeydown="return /[A-Z0-9 ]/i.test(event.key)" autocomplete="off">
                             </div>
                         </div>
 
@@ -78,7 +78,7 @@ session_start();
                             </select>
 
                             <div class="pilih_materi_text" id="pilih_materi_text" style="display: none;">
-                                <input type="text" name="konten_pelajari_text" placeholder="Lainnya" onkeydown="return /[A-Z0-9 ]/i.test(event.key)" autocomplete="off">
+                                <input type="text" name="konten_pelajari_text" id="pilih_materi_text" placeholder="Lainnya" onkeydown="return /[A-Z0-9 ]/i.test(event.key)" autocomplete="off">
                             </div>
 
                         </div>
@@ -102,7 +102,7 @@ session_start();
                             </select>
 
                             <div class="metode_pembelajaran_text" id="metode_pembelajaran_text" style="display: none;">
-                                <input type="text" name="metode_pembelajaran_text" id="" placeholder="Lainnya" onkeydown="return /[A-Z0-9 ]/i.test(event.key)" autocomplete="off">
+                                <input type="text" name="metode_pembelajaran_text" id="metode_pembelajaran_text" placeholder="Lainnya" onkeydown="return /[A-Z0-9 ]/i.test(event.key)" autocomplete="off">
                             </div>
                         </div>
 
@@ -126,7 +126,7 @@ session_start();
                             </select>
 
                             <div class="nama_instansi_text" id="nama_instansi_text" style="display: none;">
-                                <input type="text" name="nama_instansi_text" id="" placeholder="Lainnya" onkeydown="return /[A-Z0-9 ]/i.test(event.key)" autocomplete="off">
+                                <input type="text" name="nama_instansi_text" id="nama_instansi_text" placeholder="Lainnya" onkeydown="return /[A-Z0-9 ]/i.test(event.key)" autocomplete="off">
                             </div>
                         </div>
 
