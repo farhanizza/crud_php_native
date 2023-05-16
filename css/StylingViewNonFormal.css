@@ -113,3 +113,40 @@ body {
 	padding: 0.5rem 2rem 0.5rem 2rem;
 	font-weight: 600;
 }
+@media screen and (max-width: 768px) {
+	.row .col .grid-input {
+		display: flex;
+		flex-direction: column;
+	}
+	.row .col .grid-input .start-date input {
+		width: 100%;
+	}
+	.row .col .grid-input .start-date p {
+		display: none;
+	}
+	.row .col .grid-input .end-date input {
+		width: 100%;
+	}
+	.row .col .grid-input .end-date p {
+		display: none;
+	}
+	.row .col .grid-input .grid-input-button {
+		display: flex;
+		flex-direction: column-reverse;
+		align-items: center;
+		margin-top: 1rem;
+		padding-right: 4rem;
+	}
+	.row .col .grid-input .grid-input-button a {
+		margin-top: 1rem;
+	}
+	.row .col .grid-input .grid-input-button a .simpan {
+		width: 100%;
+	}
+	.row .col .grid-input .grid-input-button a .btn-tolak {
+		width: 100%;
+	}
+	.row .col .grid-input .grid-input-button a .btn-back {
+		width: 100%;
+	}
+}

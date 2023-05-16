@@ -62,3 +62,42 @@ body {
 	background-color: #56cfe1;
 	border: none;
 }
+
+/* Responsive mobile */
+@media screen and (max-width: 768px) {
+	.navbar .container-fluid span a button {
+		width: 100%;
+		margin-top: 0.5rem;
+		padding: 0.5rem 2rem 0.5rem 2rem;
+	}
+	.row .col .square-hris {
+		margin-top: 5rem;
+		padding: 7rem 2rem 2rem 2rem;
+	}
+	.row .col .square-hris .max-width-p p {
+		display: none;
+	}
+	.row .col .square-hris .button-hris {
+		margin-top: 2rem;
+	}
+	.row .col .square-hrops {
+		padding: 4rem 2rem 2rem 2rem;
+		height: 40vh;
+	}
+	.row .col .square-hrops .max-width-p p {
+		display: none;
+	}
+	.row .col .square-hrops .button-hrops {
+		margin-top: 2rem;
+	}
+	.row .col .square-hrpm {
+		padding: 4rem 2rem 2rem 2rem;
+		height: 40vh;
+	}
+	.row .col .square-hrpm .max-width-p p {
+		display: none;
+	}
+	.row .col .square-hrpm .button-hrpm {
+		margin-top: 2rem;
+	}
+}

@@ -82,3 +82,36 @@ body {
 	width: 100%;
 	background-color: #ebebeb;
 }
+
+@media screen and (max-width: 768px) {
+	.row .col .grid-input form {
+		display: flex;
+		flex-direction: column;
+	}
+	.row .col .grid-input form .start-date input {
+		width: 100%;
+	}
+	.row .col .grid-input form .start-date p {
+		display: none;
+	}
+	.row .col .grid-input form .end-date input {
+		width: 100%;
+	}
+	.row .col .grid-input form .end-date p {
+		display: none;
+	}
+	.row .col .grid-input form .grid-input-button {
+		display: flex;
+		justify-content: center;
+		margin-right: 2rem;
+		margin-bottom: 3rem;
+	}
+	.row .col .grid-input form .grid-input-button a {
+		margin-left: 3.5rem;
+		font-weight: 600;
+	}
+	.row .col .grid-input form .grid-input-button button {
+		font-weight: 600;
+		margin-right: 3.5rem;
+	}
+}

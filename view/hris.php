@@ -29,11 +29,19 @@ if (!isset($_SESSION['username']) || $_SESSION['hr_name'] !== 'HRIT_group') {
 <body>
     <div class="row">
         <div class="col">
+            <div class="navbar-button">
+                <i data-feather="menu" class="feather-32"></i>
+            </div>
             <div class="sidebar">
                 <div class="sidebar-header">
-                    <h1>
-                        HRIS
-                    </h1>
+                    <div class="d-flex button-close">
+                        <h1>
+                            HRIS
+                        </h1>
+                        <div class="button-close-i">
+                            <i data-feather="chevrons-left" class="feather-32"></i>
+                        </div>
+                    </div>
                 </div>
                 <div class="sidebar-content">
                     <ul>
@@ -86,7 +94,7 @@ if (!isset($_SESSION['username']) || $_SESSION['hr_name'] !== 'HRIT_group') {
                     left JOIN hr_pesan ON hr_pesan.id_user = hrm_user.id 
                     left JOIN hr_status ON hr_status.id_status = hrm_user.id_status
                     LEFT JOIN hr_insert_dokumen ON hr_insert_dokumen.id_user = hrm_user.id
-                    WHERE hrm_user.id_employee = $id ORDER BY hr_insert_dokumen.tanggal_insert ASC"
+                    WHERE hrm_user.id_employee = $id ORDER BY hr_insert_dokumen.tanggal_insert DESC"
                     );
                     while ($data_notif = mysqli_fetch_array($sql_code)) {
                     ?>
@@ -139,6 +147,27 @@ if (!isset($_SESSION['username']) || $_SESSION['hr_name'] !== 'HRIT_group') {
             </div>
         </div>
     </div>
+    <script>
+        const toggleButton = document.querySelector('.navbar-button');
+        const toggleButtonClose = document.querySelector('.button-close-i');
+        const sidebar = document.querySelector('.sidebar');
+
+        toggleButton.addEventListener('click', function() {
+            if (!sidebar.classList.contains('active')) {
+                sidebar.classList.add('active');
+            } else {
+                sidebar.classList.remove('close');
+            }
+        });
+
+        toggleButtonClose.addEventListener('click', function() {
+            if (!sidebar.classList.contains('close')) {
+                sidebar.classList.add('close');
+            } else {
+                sidebar.classList.remove('active');
+            }
+        })
+    </script>
     <script>
         feather.replace()
     </script>

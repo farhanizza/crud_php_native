@@ -45,3 +45,31 @@ body {
 	margin-top: 1rem;
 	margin-right: 2rem;
 }
+@media screen and (max-width: 768px) {
+	.row .col h1 {
+		text-align: center;
+	}
+	.row .col .sq-non-formal {
+		display: flex;
+		flex-direction: column;
+	}
+	.row .col .sq-non-formal .sq-non-formal-header h4 {
+		text-align: center;
+	}
+	.row .col .sq-non-formal .sq-non-formal-header h5 {
+		text-align: center;
+	}
+	.row .col .sq-non-formal .sq-non-formal-box .sq-non-formal-button {
+		margin-top: 1.5rem;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	.row .col .sq-non-formal .sq-non-formal-box .sq-non-formal-button a button {
+		padding: 0.5rem 5rem 0.5rem 5rem;
+	}
+	.row .col .sq-non-formal-back a {
+		margin-bottom: 4rem;
+		margin-right: -2.3rem;
+	}
+}

@@ -10,7 +10,7 @@ body {
 }
 .container .row .col .text-sertifikat {
 	text-align: center;
-	max-width: 60%;
+	/* max-width: 60%; */
 }
 .container .row .col .form-sertifikat form {
 	display: flex;
@@ -47,4 +47,9 @@ body {
 	color: white;
 	font-weight: 600;
 	padding: 0.5rem 0 0.5rem 0;
+}
+@media screen and (max-width: 768px) {
+	.container .row .col .text-sertifikat {
+		text-align: center;
+	}
 }

@@ -52,13 +52,13 @@ session_start();
                         </div>
 
 
-                        <div class="d-flex flex-column">
+                        <div class="d-flex flex-column start-date">
                             <label for="start_date">Mulai pelaksanaan program</label>
                             <input type="date" name="start_date" id="start_date">
                             <p>*hari/bulan/tahun</p>
                         </div>
 
-                        <div class="d-flex flex-column">
+                        <div class="d-flex flex-column end-date">
                             <label for="end_date">Selesai pelaksanaan program</label>
                             <input type="date" name="end_date" id="end_date">
                             <p>*hari/bulan/tahun</p>
@@ -173,9 +173,9 @@ session_start();
                                 }
                                 ?>
                                 <a href="#" onclick="window.location.href = 'view/group/<?php echo $back_to ?>'">
-                                    <button class="btn btn-danger">Back</button>
+                                    <button class="btn btn-danger btn-xl">Back</button>
                                 </a>
-                                <button type="submit" class="btn btn-primary simpan">Simpan</button>
+                                <button type="submit" class="btn btn-primary simpan btn-xl">Simpan</button>
                             </div>
                         </div>
                     </form>

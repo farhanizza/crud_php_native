@@ -31,3 +31,8 @@ body {
 	width: 99.5%;
 	margin-top: 2rem;
 }
+@media screen and (max-width: 768px) {
+	.container .row .col h1 {
+		text-align: center;
+	}
+}

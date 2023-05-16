@@ -40,7 +40,7 @@ function truncateString($string, $max_length)
             <div class="col">
                 <div class="d-flex justify-content-center mt-2">
                     <h1>
-                        Non-formal Education | Admin
+                        Non-formal Education | <?php echo $_SESSION['username_admin'] ?>
                     </h1>
                 </div>
             </div>
@@ -69,13 +69,13 @@ function truncateString($string, $max_length)
                             <input type="text" name="tujuan_program" id="" disabled value="<?php echo $data_view['tujuan_program'] ?>">
                         </div>
 
-                        <div class="d-flex flex-column">
+                        <div class="d-flex flex-column start-date">
                             <label for="start_date">Mulai pelaksanaan program</label>
                             <input type="date" name="start_date" id="start_date" disabled value="<?php echo $data_view['start_date'] ?>">
 
                         </div>
 
-                        <div class="d-flex flex-column">
+                        <div class="d-flex flex-column end-date">
                             <label for="end_date">Selesai pelaksanaan program</label>
                             <input type="date" name="end_date" id="end_date" disabled value="<?php echo $data_view['end_date'] ?>">
 
@@ -157,10 +157,10 @@ function truncateString($string, $max_length)
 
                             <div class="grid-input-button">
                                 <a href="non_formal.php">
-                                    <button class="btn btn-white-50">Back</button>
+                                    <button class="btn btn-white-50 btn-back">Back</button>
                                 </a>
                                 <a href="update_status_user_rejected.php?id=<?php echo $id ?>">
-                                    <button class="btn btn-danger" onclick="return confirmRejected()">Tolak</button>
+                                    <button class="btn btn-danger btn-tolak" onclick="return confirmRejected()">Tolak</button>
                                 </a>
                                 <a href="update_status_user_acc.php?id=<?php echo $id ?>">
                                     <button type="submit" class="btn btn-primary simpan" id="btn-simpan" onclick="return confirmAccepted()">Terima</button>

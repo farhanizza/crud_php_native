@@ -8,6 +8,9 @@
 body {
 	overflow-x: hidden;
 }
+.row .col .navbar-button {
+	display: none;
+}
 .row .col .sidebar {
 	width: 300px;
 	padding: 1rem 1rem 1rem 0;
@@ -19,6 +22,9 @@ body {
 	flex-direction: column;
 	align-items: center;
 	padding-top: 1rem;
+}
+.row .col .sidebar .sidebar-header .button-close .button-close-i {
+	display: none;
 }
 .row .col .sidebar .sidebar-header h1 {
 	font-weight: bold;
@@ -64,4 +70,49 @@ body {
 	height: 21px;
 	margin-left: 1.5rem;
 	/* margin-top: 0.5rem; */
+}
+@media screen and (max-width: 768px) {
+	.row .col .navbar-button {
+		display: block;
+		padding: 1.5rem 0 0 1.5rem;
+		position: fixed;
+	}
+	.row .col .sidebar.active {
+		left: 0;
+	}
+	.row .col .sidebar.close {
+		left: -30rem;
+	}
+	.row .col .sidebar {
+		position: fixed;
+		left: -30rem;
+		height: 100vh;
+		width: 100%;
+		transition: all 0.5s ease-in-out;
+	}
+	.row .col .sidebar .sidebar-header {
+		display: flex;
+		align-items: start;
+		padding-left: 2rem;
+	}
+	.row .col .sidebar .sidebar-header .button-close .button-close-i {
+		display: block;
+		position: absolute;
+		right: 0;
+		margin-right: 2rem;
+		margin-top: 0.3rem;
+		float: right;
+	}
+	.row .col .sidebar .sidebar-content {
+		margin-top: 1.5rem;
+	}
+	.row .col .sidebar .sidebar-content ul li {
+		margin-top: 0.5rem;
+	}
+	.row .col .sidebar .sidebar-content ul li .sidebar-content-logout {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		right: 0;
+	}
 }

@@ -43,7 +43,7 @@ $id = $_GET['id'];
                         $sql_file = mysqli_query($koneksi, "SELECT sertifikat FROM hrm_user WHERE id = $id");
                         $data_file = mysqli_fetch_array($sql_file);
                         ?>
-                        <embed src="file/<?php echo $data_file['sertifikat'] ?>" style="width: 1015px; height: 759px;"></embed>
+                        <iframe src="file/<?php echo $data_file['sertifikat'] ?>" style="width: 1015px; height: 759px;"></iframe>
                     </div>
                 </div>
                 <div class="d-flex justify-content-around mt-3 manual-box">

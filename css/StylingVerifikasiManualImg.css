@@ -30,3 +30,8 @@ body {
 	/* margin-top: 1.5rem;
 	margin-bottom: 1.5rem; */
 }
+@media screen and (max-width: 768px) {
+	.container .row .col h1 {
+		text-align: center;
+	}
+}
