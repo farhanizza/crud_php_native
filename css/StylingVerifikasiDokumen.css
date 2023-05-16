@@ -48,7 +48,7 @@ body {
 	font-weight: 600;
 	padding: 0.5rem 0 0.5rem 0;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 480px) {
 	.container .row .col .text-sertifikat {
 		text-align: center;
 	}

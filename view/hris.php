@@ -62,6 +62,14 @@ if (!isset($_SESSION['username']) || $_SESSION['hr_name'] !== 'HRIT_group') {
                             </a>
                         </li>
                         <li>
+                            <a href="../view/group/hrit_g.php">
+                                <i data-feather="log-out"></i>
+                                <p>
+                                    HRIT Group
+                                </p>
+                            </a>
+                        </li>
+                        <!-- <li>
                             <div class="sidebar-content-logout">
                                 <a href="../logout.php">
                                     <i data-feather="log-out"></i>
@@ -70,7 +78,7 @@ if (!isset($_SESSION['username']) || $_SESSION['hr_name'] !== 'HRIT_group') {
                                     </p>
                                 </a>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
