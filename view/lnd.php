@@ -30,11 +30,19 @@ if (!isset($_SESSION['username']) || $_SESSION['hr_name'] !== 'LnD_group') {
 <body>
     <div class="row">
         <div class="col">
+            <div class="navbar-button">
+                <i data-feather="menu" class="feather-32"></i>
+            </div>
             <div class="sidebar">
                 <div class="sidebar-header">
-                    <h1>
-                        LnD
-                    </h1>
+                    <div class="d-flex button-close">
+                        <h1>
+                            LnD
+                        </h1>
+                        <div class="button-close-i">
+                            <i data-feather="chevrons-left" class="feather-32"></i>
+                        </div>
+                    </div>
                 </div>
                 <div class="sidebar-content">
                     <ul>
@@ -55,6 +63,14 @@ if (!isset($_SESSION['username']) || $_SESSION['hr_name'] !== 'LnD_group') {
                             </a>
                         </li>
                         <li>
+                            <a href="../view/group/lnd_g.php">
+                                <i data-feather="log-out"></i>
+                                <p>
+                                    LnD Group
+                                </p>
+                            </a>
+                        </li>
+                        <!-- <li>
                             <div class="sidebar-content-logout">
                                 <a href="../logout.php">
                                     <i data-feather="log-out"></i>
@@ -63,7 +79,7 @@ if (!isset($_SESSION['username']) || $_SESSION['hr_name'] !== 'LnD_group') {
                                     </p>
                                 </a>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -140,6 +156,27 @@ if (!isset($_SESSION['username']) || $_SESSION['hr_name'] !== 'LnD_group') {
             </div>
         </div>
     </div>
+    <script>
+        const toggleButton = document.querySelector('.navbar-button');
+        const toggleButtonClose = document.querySelector('.button-close-i');
+        const sidebar = document.querySelector('.sidebar');
+
+        toggleButton.addEventListener('click', function() {
+            if (!sidebar.classList.contains('active')) {
+                sidebar.classList.add('active');
+            } else {
+                sidebar.classList.remove('close');
+            }
+        });
+
+        toggleButtonClose.addEventListener('click', function() {
+            if (!sidebar.classList.contains('close')) {
+                sidebar.classList.add('close');
+            } else {
+                sidebar.classList.remove('active');
+            }
+        })
+    </script>
     <script>
         feather.replace()
     </script>

@@ -35,4 +35,7 @@ body {
 	.container .row .col h1 {
 		text-align: center;
 	}
+	.container .row .col .input-menolak-dokumen form button {
+		margin-top: 3rem;
+	}
 }

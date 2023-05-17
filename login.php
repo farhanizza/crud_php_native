@@ -29,11 +29,11 @@
             </div>
         </div>
         <div class="col">
-            <?php
-            require_once 'config/log_server.php';
-            date_default_timezone_set('Asia/Jakarta');
-            write_log_server($_SERVER['SERVER_NAME'], "User masuk ke halaman login", date('Y-m-d : H:i:s', $_SERVER['REQUEST_TIME']), '');
-            ?>
+            <!-- <?php
+                    require_once 'config/log_server.php';
+                    date_default_timezone_set('Asia/Jakarta');
+                    write_log_server($_SERVER['SERVER_NAME'], "User masuk ke halaman login", date('Y-m-d : H:i:s', $_SERVER['REQUEST_TIME']), '');
+                    ?> -->
             <div class="d-flex flex-column register-padding">
                 <div class="register-hello">
                     <h3>Hi!, Welcome to our web</h3>

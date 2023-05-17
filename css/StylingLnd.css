@@ -47,3 +47,31 @@ body {
 	background-color: #516233;
 	border: none;
 }
+
+@media screen and (max-width: 480px) {
+	.navbar .container-fluid span a button {
+		width: 100%;
+		margin-top: 0.5rem;
+		padding: 0.5rem 2rem 0.5rem 2rem;
+	}
+	.row .col .square-lnd {
+		margin-top: 5rem;
+		padding: 7rem 2rem 2rem 2rem;
+	}
+	.row .col .square-lnd .max-width-p p {
+		display: none;
+	}
+	.row .col .square-lnd .button-lnd {
+		margin-top: 2rem;
+	}
+	.row .col .square-payroll {
+		padding: 4rem 2rem 2rem 2rem;
+		height: 40vh;
+	}
+	.row .col .square-payroll .max-width-p p {
+		display: none;
+	}
+	.row .col .square-payroll .button-payroll {
+		margin-top: 2rem;
+	}
+}
