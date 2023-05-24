@@ -8,3 +8,5 @@ function confirmDelete() {
 		return false;
 	}
 }
+
+// onclick="return confirmDelete()"

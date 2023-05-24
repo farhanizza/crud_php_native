@@ -28,7 +28,7 @@
                     $_SESSION['key_qr'] = $key;
                     // echo $_SESSION['key_qr'];
                     // Isi data QR Code
-
+                    // . $key
                     $data = gethostbyname(gethostname()) . '/DASAR/forgot_password?' . $key;
 
                     mysqli_query($koneksi, "INSERT INTO qr_code (token, status) VALUES ('$key', 'valid_token')");

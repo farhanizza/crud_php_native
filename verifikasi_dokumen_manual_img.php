@@ -2,7 +2,7 @@
 require_once 'koneksi.php';
 session_start();
 // Cek apakah sudah login
-if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
+if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '1') {
     echo
     "<script>
     alert('Login first');
@@ -40,7 +40,7 @@ $id = $_GET['id'];
                 <div class="d-flex justify-content-center mt-5">
                     <div class="image-verifikas">
                         <?php
-                        $sql_file = mysqli_query($koneksi, "SELECT sertifikat FROM hrm_user WHERE id = $id");
+                        $sql_file = mysqli_query($koneksi, "SELECT sertifikat FROM hr_user_non_formal WHERE id = $id");
                         $data_file = mysqli_fetch_array($sql_file);
                         ?>
                         <iframe src="file/<?php echo $data_file['sertifikat'] ?>" style="width: 1015px; height: 759px;"></iframe>
@@ -63,7 +63,7 @@ $id = $_GET['id'];
                 </div>
                 <div class="d-flex flex-column align-items-center mb-5 mt-5 manual-button">
                     <a href="verifikasi_dokumen_asli.php?id=<?php echo $id ?>">
-                        <button class="btn btn-success" onclick="">Dokumen Asli</button>
+                        <button class="btn btn-success">Dokumen Asli</button>
                     </a>
                     <div class="mt-4 mb-4">
                         <a href="alasan_menolak_dokumen.php?id=<?php echo $id ?>">

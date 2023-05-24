@@ -2,7 +2,7 @@
 session_start();
 
 // Cek apakah sudah login
-if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
+if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '1') {
     echo
     "<script>
     alert('Login first');
@@ -43,16 +43,16 @@ if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
         require_once "koneksi.php";
         $id = $_GET["id"];
         $sql_code = mysqli_query($koneksi, "SELECT *, 
-        provinces.name AS name_of_provinces,
-        geo_countries.name AS name_of_countries, 
-        regencies.name AS name_of_regencies, 
+        hr_provinces.name AS name_of_provinces,
+        hr_countries.name AS name_of_countries, 
+        hr_regencies.name AS name_of_regencies, 
         CONCAT(first_name, ' ', middle_name, ' ', last_name) AS Full_Name 
-        FROM employee 
-        JOIN geo_countries ON employee.negara = geo_countries.abv
-        JOIN provinces ON provinces.id = employee.birth_place
-        JOIN regencies ON regencies.id = employee.regencies
-        JOIN hrmposition ON hrmposition.position_id = employee.grade_name
-        WHERE employee.id = $id");
+        FROM hr_employee 
+        JOIN hr_countries ON hr_employee.negara = hr_countries.abv
+        JOIN hr_provinces ON hr_provinces.id = hr_employee.birth_place
+        JOIN hr_regencies ON hr_regencies.id = hr_employee.regencies
+        JOIN hr_position ON hr_position.position_id = hr_employee.grade_name
+        WHERE hr_employee.id = $id");
         while ($data = mysqli_fetch_array($sql_code)) {
         ?>
             <div class="row mt-5 mb-5">

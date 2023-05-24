@@ -2,7 +2,7 @@
 session_start();
 
 // Cek apakah sudah login
-if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
+if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '1') {
     echo
     "<script>
     alert('Login first');
@@ -32,6 +32,7 @@ include('lang/' . $_SESSION['lang'] . '.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="css/StylingEdit.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Edit</title>
 </head>
 
@@ -40,8 +41,8 @@ include('lang/' . $_SESSION['lang'] . '.php');
         <?php
         require_once "koneksi.php";
         $id = $_GET['id'];
-        $sql_code = mysqli_query($koneksi, "SELECT *, CONCAT(first_name, ' ', middle_name, ' ', last_name) AS Full_Name FROM employee WHERE id = '$id'");
-        $data_negara = mysqli_query($koneksi, "SELECT * FROM geo_countries");
+        $sql_code = mysqli_query($koneksi, "SELECT *, CONCAT(first_name, ' ', middle_name, ' ', last_name) AS Full_Name FROM hr_employee WHERE id = '$id'");
+        $data_negara = mysqli_query($koneksi, "SELECT * FROM hr_countries");
 
         while ($data = mysqli_fetch_array($sql_code)) {
         ?>
@@ -59,7 +60,7 @@ include('lang/' . $_SESSION['lang'] . '.php');
             <div class="row">
                 <div class="col">
                     <div class="detail-data">
-                        <form action="edit_data.php" method="post" enctype="multipart/form-data">
+                        <form id="form_edit" enctype="multipart/form-data">
                             <div class="d-flex flex-column detail-data-input">
 
                                 <input type="hidden" name="id" value="<?php echo $data['id'] ?>">
@@ -105,9 +106,7 @@ include('lang/' . $_SESSION['lang'] . '.php');
                                 <input type="text" name="last_name" onkeydown="return /[a-z ]/i.test(event.key)" value="<?php echo $data['last_name'] ?>">
 
                                 <br>
-                                <?php
-                                $sql_provinsi = mysqli_query($koneksi, "SELECT * FROM provinces ORDER BY name ASC");
-                                ?>
+
 
                                 <div class="div" id="province" style="display: none;">
                                     <div class="form-group mb-3">
@@ -115,6 +114,10 @@ include('lang/' . $_SESSION['lang'] . '.php');
                                         <select class="form-control mt-3" id="provinsi" name="provinsi" required style="padding: 1rem 2rem 1rem 2rem; background-color: #e7ecef; border: none; color: #001427; font-weight: 500; border-radius: 10px;">
                                             <option value="" disabled>-- <?php echo constant('table_prov') ?> --</option>
                                             <option value="99">WNA</option>
+                                            <?php
+                                            $sql_provinsi = mysqli_query($koneksi, "SELECT * FROM hr_provinces ORDER BY name ASC");
+                                            ?>
+
                                             <?php while ($data_provinsi = mysqli_fetch_array($sql_provinsi)) { ?>
                                                 <option value="<?php echo $data_provinsi['id'] ?>" <?php if ($data_provinsi['id'] == $data['birth_place']) echo 'selected' ?>> <?php echo $data_provinsi['name'] ?></option>
                                             <?php }; ?>
@@ -138,7 +141,7 @@ include('lang/' . $_SESSION['lang'] . '.php');
                                 <br>
 
                                 <?php
-                                $sql_hrmposition = mysqli_query($koneksi, "SELECT * FROM hrmposition");
+                                $sql_hrmposition = mysqli_query($koneksi, "SELECT * FROM hr_position");
                                 ?>
 
                                 <h5 for="grade_name"><?php echo constant('table_gn') ?>: </h5>
@@ -155,8 +158,8 @@ include('lang/' . $_SESSION['lang'] . '.php');
                                 <br>
 
                                 <h5 for="image">Pilih gambar (Format JPG, JPEG, atau PNG) Max 3MB:</h5>
-                                <input type="file" name="image" id="image">
-                                <input type="hidden" name="image_old" value="<?php echo $data['gambar'] ?>">
+                                <input type="file" name="image" id="image" accept=".jpg, .jpeg, .png">
+                                <!-- <input type="image" src="image/<?php echo $data['gambar'] ?>" name="image" id="image" value="image/<?php echo $data['gambar'] ?>" style="display: none;"> -->
 
                                 <p><?php echo constant('table_gd') ?></p>
                                 <div class="d-flex">
@@ -194,8 +197,135 @@ include('lang/' . $_SESSION['lang'] . '.php');
     <!-- END CDN -->
 
     <!-- JS FILES -->
+
+    <!-- Update -->
+    <script>
+        $(document).ready(function() {
+            $('#form_edit').submit(function(e) {
+                e.preventDefault();
+                // Isi data Form
+                var formData = new FormData(this);
+
+                // Inputan Image
+                var fileInput = $('input[name="image"]')[0];
+                var file = fileInput.files[0];
+                var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+                var maxSize = 3 * 1024 * 1024;
+
+                // Inputan Date
+                var dateOfBirth = new Date($('input[name="birth_date"]').val());
+                var currentDate = new Date();
+                var age = currentDate.getFullYear() - dateOfBirth.getFullYear();
+
+                // Inputan NIK dan First Name
+                var nik = $.trim($('input[name="nik"]').val());
+                var first_name = $.trim($('input[name="first_name"]').val());
+
+                if (age < 17) {
+                    // Validasi dibawah 17 tahun
+                    swal({
+                        title: "Failed Insert Date",
+                        text: "You Must Be At Least 17 Years Old!",
+                        icon: "error",
+                    });
+                    return false;
+                } else if (isEmpty_or_contains_script_tags(nik)) {
+                    // Validasi nik jika kosong dan space
+                    swal({
+                        title: "Failed Insert NIK",
+                        text: "NIK cannot be empty or contain only spaces!",
+                        icon: "error"
+                    });
+                    return false;
+                } else if (isEmpty_or_contains_script_tags(first_name)) {
+                    // Validasi first name jika kosong dan space
+                    swal({
+                        title: "Failed Insert First Name",
+                        text: "First Name Cannot Be Empty Or Contain Only Spaces!",
+                        icon: "error"
+                    });
+                    return false;
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: "edit_data.php",
+                        data: formData,
+                        success: function(response) {
+                            // Validasi NIK Sama
+                            console.log(response);
+                            if (response) {
+                                swal({
+                                    title: "Success Updated Data!",
+                                    text: "Success Updated Data!",
+                                    icon: "success"
+                                }).then(function() {
+                                    location.href = "index.php";
+                                })
+                            } else if (response === "duplicate") {
+                                swal({
+                                    title: "Failed Insert Data!",
+                                    text: "NIK have already exist",
+                                    icon: "error",
+                                }).then(function() {
+                                    location.reload();
+                                });
+                            }
+                        },
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        error: function(xhr, status, error) {
+                            swal({
+                                title: "Terjadi Kesalahan",
+                                text: error,
+                                icon: "error",
+                            })
+                        }
+                    });
+                    return true;
+                }
+            });
+        });
+    </script>
+    <!-- End -->
+
+    <!-- Menentukan Province -->
+    <script>
+        $(document).ready(function() {
+            $('#provinsi').change(function() {
+                var id_provinces = this.value;
+                console.log(id_provinces);
+                $.ajax({
+                    url: 'provinsi_index.php',
+                    type: 'POST',
+                    data: {
+                        id_provinces: id_provinces,
+                    },
+                    cache: false,
+                    success: function(success) {
+                        console.log(id_provinces);
+                        $('#kota').html(success);
+                    },
+                });
+            });
+        });
+    </script>
+    <!-- End Menentukan Province -->
+
+    <!-- Mencegah XSS dan Inputan Kosong atau Spasi -->
+    <script>
+        function isEmpty_or_contains_script_tags(input) {
+            if (input.trim() === '') {
+                return true;
+            }
+
+            var regex_script = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi;
+            return regex_script.test(input);
+        }
+    </script>
+    <!-- End -->
+
     <script src="js/validation.js"></script>
-    <script src="js/jquery.edit_birth_place.js"></script>
     <script src="js/validation_edit.js"></script>
     <!-- END JS FILES  -->
 </body>

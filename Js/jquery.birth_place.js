@@ -2,12 +2,14 @@ $(document).ready(function () {
 	$('#provinsi').change(function () {
 		var id_provinces = $(this).val();
 		$.ajax({
+			url: 'insert.php',
 			type: 'POST',
-			dataType: 'html',
-			url: 'insert.php?jenis=kota',
-			data: 'id_provinces=' + id_provinces,
-			success: function (response) {
-				$('select#kota').html(response);
+			data: {
+				id_provinces: id_provinces,
+			},
+			cache: false,
+			success: function (success) {
+				$('select#kota').html(success);
 			},
 		});
 	});

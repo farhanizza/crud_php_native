@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,8 +9,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    </link>
     <link rel="stylesheet" href="css/StylingRegister.css">
-    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>Login</title>
 </head>
 
 <body>
@@ -37,10 +43,10 @@
             <div class="d-flex flex-column register-padding">
                 <div class="register-hello">
                     <h3>Hi!, Welcome to our web</h3>
-                    <p>Enter your information for the login as an User</p>
+                    <p>Enter your information to login</p>
                 </div>
                 <div class="register-form">
-                    <form action="login_data.php" method="post">
+                    <form action="login_data.php" method="post" id="login_form">
                         <label for="username">Username</label>
                         <input type="text" name="username" id="username" autocomplete="off" required>
 
@@ -53,11 +59,11 @@
 
                         <button type="submit" class="btn btn-primary">Login</button>
                     </form>
-                    <div class="register-admin-button">
+                    <!-- <div class="register-admin-button">
                         <a href="login_admin.php">
                             <button class="btn btn-primary">Login as admin</button>
                         </a>
-                    </div>
+                    </div> -->
                     <!-- <div class="d-flex justify-content-center register-account">
                         <p>
                             Don't have an account? <a href="register.php">Register here</a>
@@ -68,6 +74,17 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <?php if (isset($_SESSION['error'])) { ?>
+        <script>
+            swal("Gagal Login", "<?php echo $_SESSION['error']; ?>", "error");
+        </script>
+    <?php unset($_SESSION['error']);
+    } else if (isset($_COOKIE['logout'])) { ?>
+        <script>
+            swal("Success logout", "<?php echo $_COOKIE['logout']; ?>", "success");
+        </script>
+    <?php setcookie('logout', '', time() - 3600);
+    } ?>
 </body>
 
 </html>

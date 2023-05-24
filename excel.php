@@ -22,14 +22,14 @@ $sheet->setCellValue('J1', 'Nationality');
 $sheet->setCellValue('K1', 'Gender');
 $sheet->setCellValue('L1', 'Citizenship');
 
-$sql_code = mysqli_query($koneksi, "SELECT *, provinces.name AS name_of_province, 
-regencies.name AS name_of_regencies, 
-geo_countries.name AS name_of_country
-FROM employee 
-JOIN provinces ON employee.birth_place = provinces.id
-JOIN regencies ON employee.regencies = regencies.id
-JOIN geo_countries ON employee.negara = geo_countries.abv
-JOIN hrmposition ON hrmposition.position_id = employee.grade_name   
+$sql_code = mysqli_query($koneksi, "SELECT *, hr_provinces.name AS name_of_province, 
+hr_regencies.name AS name_of_regencies, 
+hr_countries.name AS name_of_country
+FROM hr_employee 
+JOIN hr_provinces ON hr_employee.birth_place = hr_provinces.id
+JOIN hr_regencies ON hr_employee.regencies = hr_regencies.id
+JOIN hr_countries ON hr_employee.negara = hr_countries.abv
+JOIN hr_position ON hr_position.position_id = hr_employee.grade_name   
 ");
 
 $i = 2;

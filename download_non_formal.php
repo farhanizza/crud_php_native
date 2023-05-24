@@ -1,7 +1,7 @@
 <?php
 require_once 'koneksi.php';
 $id_user = $_GET['id'];
-$sql = mysqli_query($koneksi, "SELECT sertifikat, id FROM hrm_user WHERE id = $id_user");
+$sql = mysqli_query($koneksi, "SELECT sertifikat, id FROM hr_user_non_formal WHERE id = $id_user");
 
 $data = mysqli_fetch_array($sql);
 

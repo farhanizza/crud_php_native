@@ -29,9 +29,11 @@ require_once 'koneksi.php';
 //     }
 // }
 
-$password = password_hash('xxx', PASSWORD_BCRYPT);
+$password = password_hash('admin', PASSWORD_BCRYPT);
 
-$sql_register = mysqli_query($koneksi, "INSERT INTO register (username, password, email, level) VALUES ('xxx', '$password', 'xxx@gmail.com', '0')");
+$sql_register = mysqli_query($koneksi, "INSERT INTO hr_employee (nik, first_name, middle_name, last_name, grade_name, password, username, level) 
+VALUES 
+('admin', 'admin', '', '', 'admin', '$password', 'admin', 1)");
 
 if ($sql_register) {
     echo "Sukses daftar admin";

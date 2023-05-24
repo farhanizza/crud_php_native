@@ -2,7 +2,7 @@
 require_once 'koneksi.php';
 session_start();
 // Cek apakah sudah login
-if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
+if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '1') {
     echo
     "<script>
     alert('Login first');
@@ -27,6 +27,7 @@ if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
     <link rel="stylesheet" href="css/StylingNonFormal.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
 
@@ -40,8 +41,8 @@ if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
             </div>
         </div>
         <?php
-        $sql = mysqli_query($koneksi, "SELECT hrm_user.id, hrm_user.nama_lengkap, hr_status.status FROM hrm_user 
-        left join hr_status ON hr_status.id_status = hrm_user.id_status
+        $sql = mysqli_query($koneksi, "SELECT hr_user_non_formal.id, hr_user_non_formal.nama_lengkap, hr_status.status FROM hr_user_non_formal 
+        left join hr_status ON hr_status.id_status = hr_user_non_formal.id_status
         ORDER BY id DESC");
         while ($data = mysqli_fetch_array($sql)) {
         ?>
@@ -96,6 +97,32 @@ if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <!-- Alert Ditolak status -->
+    <?php if (isset($_SESSION['alert_tolak_dokumen'])) { ?>
+        <script>
+            swal({
+                title: "Success",
+                text: "<?php echo $_SESSION['alert_tolak_dokumen'] ?>",
+                icon: "error"
+            });
+        </script>
+    <?php unset($_SESSION['alert_tolak_dokumen']);
+    } ?>
+    <!-- End -->
+
+    <!-- Alert Diterima status -->
+    <?php if (isset($_SESSION['alert_terima_dokumen'])) { ?>
+        <script>
+            swal({
+                title: "Success",
+                text: "<?php echo $_SESSION['alert_terima_dokumen'] ?>",
+                icon: "success"
+            });
+        </script>
+    <?php unset($_SESSION['alert_terima_dokumen']);
+    } ?>
+    <!-- End -->
 </body>
 
 </html>

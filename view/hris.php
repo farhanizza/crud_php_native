@@ -97,12 +97,12 @@ if (!isset($_SESSION['username']) || $_SESSION['hr_name'] !== 'HRIT_group') {
                     $sql_code = mysqli_query(
                         $koneksi,
                         "SELECT hr_status.status, hr_pesan.alasan_form, hr_insert_dokumen.tanggal_insert 
-                    FROM hrm_user 
-                    left JOIN employee ON hrm_user.id_employee = employee.id
-                    left JOIN hr_pesan ON hr_pesan.id_user = hrm_user.id 
-                    left JOIN hr_status ON hr_status.id_status = hrm_user.id_status
-                    LEFT JOIN hr_insert_dokumen ON hr_insert_dokumen.id_user = hrm_user.id
-                    WHERE hrm_user.id_employee = $id ORDER BY hr_insert_dokumen.tanggal_insert DESC"
+                    FROM hr_user_non_formal 
+                    left JOIN hr_employee ON hr_user_non_formal.id_employee = hr_employee.id
+                    left JOIN hr_pesan ON hr_pesan.id_user = hr_user_non_formal.id 
+                    left JOIN hr_status ON hr_status.id_status = hr_user_non_formal.id_status
+                    LEFT JOIN hr_insert_dokumen ON hr_insert_dokumen.id_user = hr_user_non_formal.id
+                    WHERE hr_user_non_formal.id_employee = $id ORDER BY hr_insert_dokumen.tanggal_insert DESC"
                     );
                     while ($data_notif = mysqli_fetch_array($sql_code)) {
                     ?>
@@ -139,7 +139,11 @@ if (!isset($_SESSION['username']) || $_SESSION['hr_name'] !== 'HRIT_group') {
                         <div class="notif-box mb-3" style="background-color: <?php echo $bg_notif ?>;">
                             <div class="d-flex">
                                 <h4 style="color: <?php echo $h1_color ?>;">
-                                    <?php echo $data_notif['status'] ?> | <?php echo $tanggal_insert ?>
+                                    <?php if (empty($data_notif['status'])) {
+                                        echo "Tidak ada notifikasi";
+                                    } else { ?>
+                                        <?php echo $data_notif['status'] ?> | <?php echo $tanggal_insert ?>
+                                    <?php } ?>
                                 </h4>
                                 <img src="../<?php echo $img ?>" alt="">
                             </div>

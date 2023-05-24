@@ -2,7 +2,7 @@
 require_once 'koneksi.php';
 session_start();
 // Cek apakah sudah login
-if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
+if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '1') {
     echo
     "<script>
     alert('Login first');
@@ -32,6 +32,8 @@ function truncateString($string, $max_length)
     <title>Non Formal Education Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/StylingViewNonFormal.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
 
 <body>
@@ -49,12 +51,12 @@ function truncateString($string, $max_length)
             <div class="col">
                 <?php
                 $id = $_GET['id'];
-                $sql_code = mysqli_query($koneksi, "SELECT *, provinces.name as name_of_provinces,
-                regencies.name as name_of_regencies,
-                hrm_user.id as id_user
-                FROM hrm_user JOIN provinces on provinces.id = hrm_user.lokasi_provinsi
-                JOIN regencies on regencies.id = hrm_user.lokasi_kota
-                where hrm_user.id = $id");
+                $sql_code = mysqli_query($koneksi, "SELECT *, hr_provinces.name as name_of_provinces,
+                hr_regencies.name as name_of_regencies,
+                hr_user_non_formal.id as id_user
+                FROM hr_user_non_formal JOIN hr_provinces on hr_provinces.id = hr_user_non_formal.lokasi_provinsi
+                JOIN hr_regencies on hr_regencies.id = hr_user_non_formal.lokasi_kota
+                where hr_user_non_formal.id = $id");
 
                 while ($data_view = mysqli_fetch_array($sql_code)) {
                 ?>
@@ -109,7 +111,7 @@ function truncateString($string, $max_length)
                                 ?>
                                 <p class="download-text"><?php echo $text_sertifikat ?></p>
                             </div>
-                            <div class="verified-box">
+                            <div class="verified-box" id="verified-box">
                                 <?php
                                 if ($data_view['status_sertifikat'] == "Belum melakukan review sertifikat") {
                                     $color_text = '#ffbe0b';
@@ -159,11 +161,17 @@ function truncateString($string, $max_length)
                                 <a href="non_formal.php">
                                     <button class="btn btn-white-50 btn-back">Back</button>
                                 </a>
-                                <a href="update_status_user_rejected.php?id=<?php echo $id ?>">
-                                    <button class="btn btn-danger btn-tolak" onclick="return confirmRejected()">Tolak</button>
+                                <?php if ($data_view['status_sertifikat'] == "Sistem membuktikan dokumen asli") {
+                                    $btn_info_asli = 'none';
+                                } else if ($data_view['status_sertifikat'] == "Sistem membuktikan dokumen palsu") {
+                                    $btn_info_palsu = 'none';
+                                } ?>
+
+                                <a href="update_status_user_rejected.php?id=<?php echo $id ?>" style="display: <?php echo $btn_info_asli ?>;">
+                                    <button class="btn btn-danger btn-tolak" id="btn-tolak">Tolak</button>
                                 </a>
-                                <a href="update_status_user_acc.php?id=<?php echo $id ?>">
-                                    <button type="submit" class="btn btn-primary simpan" id="btn-simpan" onclick="return confirmAccepted()">Terima</button>
+                                <a href="update_status_user_acc.php?id=<?php echo $id ?>" style="display: <?php echo $btn_info_palsu ?>;">
+                                    <button type="submit" class="btn btn-primary simpan" id="btn-simpan">Terima</button>
                                 </a>
                             </div>
                         </div>
@@ -174,28 +182,32 @@ function truncateString($string, $max_length)
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script>
-        function confirmAccepted() {
-            let confirmation = confirm("Apakah kamu yakin ingin menerima?");
-            if (confirmation) {
-                // alert('Berhasil diterima');
-                return true;
-            }
-            // alert('Belum diterima');
-            return false;
-        }
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Alert diterima dari verifikasi manual -->
+    <?php if (isset($_SESSION['alert_terima_manual'])) { ?>
+        <script>
+            swal({
+                title: "Success",
+                text: "<?php echo $_SESSION['alert_terima_manual'] ?>",
+                icon: "success"
+            });
+        </script>
+    <?php unset($_SESSION['alert_terima_manual']);
+    } ?>
+    <!-- End -->
 
-        function confirmRejected() {
-            let confirmation = confirm("Apakah kamu yakin ingin menolak?");
-            if (confirmation) {
-                // alert('Berhasil ditolak');
-                return true;
-            }
-            // alert('Belum ditolak');
-            return false;
-        }
-    </script>
+    <!-- Alert belum melakukan review sertifikat -->
+    <?php if (isset($_SESSION['alert_review_dokumen'])) { ?>
+        <script>
+            swal({
+                title: "Warning Dokumen!",
+                text: "<?php echo $_SESSION['alert_review_dokumen']; ?>",
+                icon: "info"
+            });
+        </script>
+    <?php unset($_SESSION['alert_review_dokumen']);
+    } ?>
+    <!-- End -->
 </body>
 
 </html>

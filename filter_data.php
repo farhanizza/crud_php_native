@@ -2,18 +2,20 @@
 session_start();
 
 // Cek apakah sudah login
-if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
+if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '1') {
     echo
     "<script>
     alert('Login first');
     window.location.href = 'login.php';
     </script>";
 } else {
-    // 20 * 60 = 1200 (20 menit)
+    // 20 * 60 = 1200 detik (20 menit) untuk durasi waktu sesi
     if ((time() - $_SESSION['last_login_time']) > 1200) {
         header("location: logout.php");
     }
 }
+
+$_SESSION['alert'] = "Success Filter Data!";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +26,8 @@ if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel=" stylesheet" href="boostrapV5/bs5.css">
     <link rel="stylesheet" href="css/StylingFilter.css">
-    <title>Document</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>Filter Data</title>
 </head>
 
 <body>
@@ -36,7 +39,7 @@ if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
         </div>
         <div class="row">
             <div class="col">
-                <form action="filter_data_result.php" method="get">
+                <form action="filter_data_result.php" method="get" id="form_filter_data">
                     <div class="d-flex flex-column">
                         <label for="nik">ID <span class="required">*</span> </label>
                         <input type="text" name="nik" id="nik" onkeydown="return /[a-z0-9- ]/i.test(event.key)" required>
@@ -51,9 +54,9 @@ if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
                             <button class="btn btn-warning mx-5">
                                 <a href="index.php" style="text-decoration: none; color: white;">Back</a>
                             </button>
-                            <a href="filter_data_result.php">
-                                <button type="submit" class="btn btn-primary">Filter</button>
-                            </a>
+                            <button type="submit" class="btn btn-primary btn-filter">Filter</button>
+                            <!-- <a href="filter_data_result.php">
+                            </a> -->
                         </div>
                     </div>
                 </form>

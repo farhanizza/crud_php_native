@@ -4,7 +4,7 @@ require_once 'koneksi.php';
 session_start();
 
 // Cek apakah sudah login
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['username_admin'])) {
     echo
     "<script>
     alert('Login first');
@@ -31,18 +31,18 @@ if (isset($_POST['search'])) {
     $keyword = $_POST['search'];
     $sql_code = mysqli_query($koneksi, "SELECT *, CONCAT(first_name, ' ', middle_name, ' ', last_name)
     AS Full_Name, 
-    provinces.name AS name_of_provinces, 
-    employee.id AS id_of_employee
-    FROM employee 
-    JOIN provinces ON provinces.id = employee.birth_place
-    JOIN hrmposition ON hrmposition.position_id = employee.grade_name   
+    hr_provinces.name AS name_of_provinces, 
+    hr_employee.id AS id_of_employee
+    FROM hr_employee 
+    JOIN hr_provinces ON hr_provinces.id = hr_employee.birth_place
+    JOIN hr_position ON hr_position.position_id = hr_employee.grade_name   
     WHERE nik LIKE '%" . $keyword . "%' OR 
     first_name LIKE '%" . $keyword . "%' OR
     grade_name LIKE '%" . $keyword . "%' OR
     middle_name LIKE '%" . $keyword . "%' OR
     last_name LIKE '%" . $keyword . "%' OR
-    provinces.name LIKE '%" . $keyword . "%'
-    ORDER BY employee.id ASC LIMIT 5");
+    hr_provinces.name LIKE '%" . $keyword . "%'
+    ORDER BY hr_employee.id ASC LIMIT 5");
 
     if (mysqli_num_rows($sql_code) > 0) {
         while ($data = mysqli_fetch_array($sql_code)) {

@@ -2,14 +2,14 @@
 session_start();
 
 // Cek apakah sudah login
-if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
+if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '1') {
     echo
     "<script>
     alert('Login first');
     window.location.href = 'login.php';
     </script>";
 } else {
-    // 20 * 60 = 1200 (20 menit)
+    // 20 * 60 = 1200 detik (20 menit) untuk durasi waktu sesi
     if ((time() - $_SESSION['last_login_time']) > 1200) {
         header("location: logout.php");
     }
@@ -25,7 +25,9 @@ if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
     <link rel=" stylesheet" href="boostrapV5/bs5.css">
     <link rel="stylesheet" href="css/StylingFilter.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
-    <title>Document</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <title>Filter Data</title>
 </head>
 
 <body>
@@ -59,32 +61,32 @@ if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
                             <?php
                             require_once 'koneksi.php';
 
-                            $sql = "SELECT *, CONCAT(first_name, ' ', middle_name, ' ', last_name)
-                            AS full_name, provinces.name AS name_of_provinces, employee.nik AS nik_of_employee,
-                            hrmposition.position_level AS position_level, regencies.name AS name_of_city, geo_countries.name AS name_of_country
-                            FROM employee 
-                            JOIN provinces ON provinces.id = employee.birth_place
-                            JOIN regencies ON regencies.id = employee.regencies
-                            JOIN hrmposition ON hrmposition.position_id = employee.grade_name
-                            JOIN geo_countries ON employee.negara = geo_countries.abv
-                            ";;
+                            $nik = $_GET['nik'];
+                            $first_name = $_GET['first_name'];
+                            $citizenship = $_GET['citizenship'];
 
-                            $first_name = $_GET['first_name'] ?? "";
-                            $citizenship = $_GET['citizenship'] ?? "";
-                            $nik = $_GET['nik'] ?? "";
+                            $sql = "SELECT *, CONCAT(first_name, ' ', middle_name, ' ', last_name)
+                            AS full_name, hr_provinces.name AS name_of_provinces, hr_employee.nik AS nik_of_employee,
+                            hr_position.position_level AS position_level, hr_regencies.name AS name_of_city, hr_countries.name AS name_of_country
+                            FROM hr_employee 
+                            JOIN hr_provinces ON hr_provinces.id = hr_employee.birth_place
+                            JOIN hr_regencies ON hr_regencies.id = hr_employee.regencies
+                            JOIN hr_position ON hr_position.position_id = hr_employee.grade_name
+                            JOIN hr_countries ON hr_employee.negara = hr_countries.abv
+                            ";
 
                             $filter = array();
 
                             if ($first_name !== "") {
-                                $filter[] = "first_name LIKE '%$first_name%'";
+                                $filter[] = "hr_employee.first_name LIKE '%$first_name%'";
                             }
 
                             if ($nik !== "") {
-                                $filter[] = "nik LIKE '%$nik%'";
+                                $filter[] = "hr_employee.nik LIKE '%$nik%'";
                             }
 
                             if ($citizenship !== "") {
-                                $filter[] = "kewarganegaraan LIKE '%$citizenship%'";
+                                $filter[] = "hr_employee.kewarganegaraan LIKE '%$citizenship%'";
                             }
 
                             if (count($filter) > 0) {
@@ -143,6 +145,15 @@ if (!isset($_SESSION['username_admin']) || $_SESSION['level'] !== '0') {
             });
         });
     </script>
+
+    <!-- Sweet Alert -->
+    <?php if (isset($_SESSION['alert'])) { ?>
+        <script>
+            swal("Success Filter Data", "<?php echo $_SESSION['alert']; ?>", "success")
+        </script>
+    <?php unset($_SESSION['alert']);
+    } ?>
+    <!-- End -->
 </body>
 
 </html>
