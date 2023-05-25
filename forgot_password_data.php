@@ -11,9 +11,10 @@ if (isset($_POST['email'])) {
     $email = $_POST['email'];
     $token = generateToken();
     $_SESSION['token'] = $token;
-    saveTokenToDatabase($token, $email);
+    // saveTokenToDatabase($token, $email);
+    mysqli_query($koneksi, "INSERT INTO hr_reset_password (token, email, status_change) VALUES ('$token', '$email', 'valid_token')");
     sendResetPasswordToEmail($token, $email);
-    mysqli_query($koneksi, "UPDATE qr_code SET status = 'invalid_token'");
+    mysqli_query($koneksi, "UPDATE hr_qr_code SET status = 'invalid_token'");
 } else {
     echo "<script>
         alert('tidak ada email yang dikirim');
@@ -31,7 +32,7 @@ function generateToken()
 function saveTokenToDatabase($token, $email)
 {
     require_once 'koneksi.php';
-    mysqli_query($koneksi, "INSERT INTO reset_password (token, email, status_change) VALUES ('$token', '$email', 'valid_token')");
+    mysqli_query($koneksi, "INSERT INTO hr_reset_password (token, email, status_change) VALUES ('$token', '$email', 'valid_token')");
     mysqli_close($koneksi);
 }
 

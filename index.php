@@ -157,7 +157,7 @@ include('lang/' . $_SESSION['lang'] . '.php');
                             FROM hr_employee 
                             JOIN hr_provinces ON hr_provinces.id = hr_employee.birth_place
                             JOIN hr_position ON hr_position.position_id = hr_employee.grade_name   
-                            ORDER BY hr_employee.id ASC
+                            ORDER BY hr_employee.nik ASC
                             LIMIT $page_early, 5");
 
                             while ($data = mysqli_fetch_array($sql_code)) {
@@ -304,6 +304,10 @@ include('lang/' . $_SESSION['lang'] . '.php');
                                             <p class="p-info">*<?php echo constant('p_example') ?>: Andiejanto</p>
 
                                             <br>
+
+                                            <label for="email">Email</label>
+                                            <input type="email" name="email" id="email" onkeydown="return /[a-z0-9@.]/i.test(event.key)" required>
+                                            <p class="p-info">*example@gmail.com</p>
 
 
                                             <div class="div" id="province" style="display: none; margin-left: -0.5rem;">

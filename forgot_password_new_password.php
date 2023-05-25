@@ -1,13 +1,13 @@
-<?php
-session_start();
-if (!isset($_SESSION['token'])) {
-    echo
-    "<script>
+<!-- <?php
+        session_start();
+        if (!isset($_SESSION['token'])) {
+            echo
+            "<script>
     alert('Token Error');
     window.location.href = 'login.php';
     </script>";
-}
-?>
+        }
+        ?> -->
 <!DOCTYPE html>
 <html lang="en">
 

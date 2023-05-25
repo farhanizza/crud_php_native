@@ -107,6 +107,9 @@ include('lang/' . $_SESSION['lang'] . '.php');
 
                                 <br>
 
+                                <h5>Email</h5>
+                                <input type="email" name="email" id="email" onkeydown="return /[a-z0-9@.]/i.test(event.key)" required value="<?php echo $data['email'] ?>">
+
 
                                 <div class="div" id="province" style="display: none;">
                                     <div class="form-group mb-3">
@@ -221,7 +224,25 @@ include('lang/' . $_SESSION['lang'] . '.php');
                 var nik = $.trim($('input[name="nik"]').val());
                 var first_name = $.trim($('input[name="first_name"]').val());
 
-                if (age < 17) {
+                if (file && !allowedExtensions.exec(file.name)) {
+                    // Validasi extension
+                    swal({
+                        title: "Failed Insert Image",
+                        text: "Extension Image Allowed .jpg .jpeg .png",
+                        icon: "error"
+                    });
+                    return false;
+
+                } else if (file.size > maxSize) {
+                    // Validasi max size
+                    swal({
+                        title: "Failed Insert Image",
+                        text: "Image Size should not exceed 3MB",
+                        icon: "error"
+                    });
+                    return false;
+
+                } else if (age < 17) {
                     // Validasi dibawah 17 tahun
                     swal({
                         title: "Failed Insert Date",
@@ -242,6 +263,14 @@ include('lang/' . $_SESSION['lang'] . '.php');
                     swal({
                         title: "Failed Insert First Name",
                         text: "First Name Cannot Be Empty Or Contain Only Spaces!",
+                        icon: "error"
+                    });
+                    return false;
+                } else if (isEmpty_or_contains_script_tags(formData.get("email"))) {
+                    // Validasi email jika kosong dan space
+                    swal({
+                        title: "Failed Insert Email",
+                        text: "Email Cannot Be Empty Or Contain Only Spaces!",
                         icon: "error"
                     });
                     return false;
@@ -325,7 +354,7 @@ include('lang/' . $_SESSION['lang'] . '.php');
     </script>
     <!-- End -->
 
-    <script src="js/validation.js"></script>
+    <!-- <script src="js/validation.js"></script> -->
     <script src="js/validation_edit.js"></script>
     <!-- END JS FILES  -->
 </body>

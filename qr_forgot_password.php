@@ -31,7 +31,7 @@
                     // . $key
                     $data = gethostbyname(gethostname()) . '/DASAR/forgot_password?' . $key;
 
-                    mysqli_query($koneksi, "INSERT INTO qr_code (token, status) VALUES ('$key', 'valid_token')");
+                    mysqli_query($koneksi, "INSERT INTO hr_qr_code (token, status) VALUES ('$key', 'valid_token')");
 
                     // Konfigurasi QR Code
                     $size = 6;

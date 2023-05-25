@@ -14,16 +14,29 @@ $nationality = $_POST["negara"];
 $kewarganegaraan = $_POST["kewarganegaraan"];
 $provinsi = $_POST["provinsi"];
 $regencies = $_POST["kota"];
+$email = $_POST['email'];
 
 // Upload image
 $image_file = $_FILES["image"]["name"];
 $image_size = $_FILES["image"]["size"];
 $image_temporary = $_FILES["image"]["tmp_name"];
 $folder = "image/";
+
+// Ambil Gambar
+$sql_image = mysqli_query($koneksi, "SELECT gambar FROM hr_employee WHERE id = '$id'");
+$data_image = mysqli_fetch_array($sql_image);
 date_default_timezone_set('Asia/Jakarta');
-$image_name = date("h-i-s-a") . "-" . date("Y-m-d", time()) . '-' . $image_file;
+
+// Cek apakah image terjadi edit atau tidak
+if ($image_file === '') {
+    $image_name = $data_image['gambar'];
+} else {
+    $image_name = date("h-i-s-a") . "-" . date("Y-m-d", time()) . '-' . $image_file;
+}
+
 $new_path = $folder . $image_name;
 move_uploaded_file($_FILES["image"]["tmp_name"], $new_path);
+
 
 // Cek NIK yang sama
 $cek_nik = mysqli_query($koneksi, "SELECT nik FROM hr_employee WHERE nik = '$nik'");
@@ -45,7 +58,9 @@ birth_date = '$birth_date',
 grade_name = '$grade_name', 
 negara = '$nationality', 
 kewarganegaraan = '$kewarganegaraan',
-gambar = '$image_name'
+gambar = '$image_name',
+username = '$nik',
+email = '$email'
 WHERE id = '$id'";
 
 mysqli_query($koneksi, $sql);

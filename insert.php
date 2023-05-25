@@ -6,6 +6,7 @@ $nik = $_POST["nik"];
 $first_name = $_POST["first_name"];
 $middle_name = $_POST["middle_name"];
 $last_name = $_POST["last_name"];
+$email = $_POST['email'];
 $birth_date = $_POST["birth_date"];
 $grade_name = $_POST["grade_name"];
 $gender = $_POST["gender"];
@@ -37,8 +38,8 @@ if (mysqli_num_rows($cek_nik) > 0) {
 
 $sql = "INSERT INTO hr_employee 
 (nik, first_name, middle_name, last_name, birth_place, regencies, birth_date, grade_name, gender, negara,
-kewarganegaraan, gambar, password, username, hr_name)
+kewarganegaraan, gambar, password, username, hr_name, email)
 VALUES ('$nik', '$first_name', '$middle_name', '$last_name', '$provinsi', '$regencies','$birth_date', 
-'$grade_name', '$gender', '$nationality', '$kewarganegaraan', '$image_name', '$temp_password', '$username', '$hr_name')";
+'$grade_name', '$gender', '$nationality', '$kewarganegaraan', '$image_name', '$temp_password', '$username', '$hr_name', '$email')";
 
 mysqli_query($koneksi, $sql);

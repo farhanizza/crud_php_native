@@ -1,12 +1,5 @@
 <?php
 require_once 'koneksi.php';
-
-$sql = mysqli_query($koneksi, "SELECT token FROM qr_code WHERE status = 'invalid_token'");
-
-if (mysqli_num_rows($sql) > 0) {
-    header("Location: login.php");
-    exit();
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +24,7 @@ if (mysqli_num_rows($sql) > 0) {
                             <br>
                             <input type="email" name="email" id="email" onkeydown="return /[a-z0-9@.]/i.test(event.key)" required>
                             <br>
-                            <button type="submit" name="btn-reset-password">Reset password</button>
+                            <button type="submit" name="btn-reset-password">Kirim Email</button>
                         </form>
                     </div>
                 </div>
